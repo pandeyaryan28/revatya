@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0b1326" />
+      <stop offset="100%" stop-color="#040711" />
+    </radialGradient>
+    <linearGradient id="planetGrad" x1="25%" y1="15%" x2="85%" y2="85%">
+      <stop offset="0%" stop-color="#cbd5e1" />
+      <stop offset="55%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#94a3b8" />
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="15%" y1="80%" x2="88%" y2="22%">
+      <stop offset="0%" stop-color="#64748b" />
+      <stop offset="50%" stop-color="#e2e8f0" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+    <mask id="planetCutout">
+      <rect width="128" height="128" fill="white" />
+      <!-- Negative-space orbital channel cutting across the sphere -->
+      <path
+        d="M 14 82 C 30 96, 78 72, 108 36 C 78 64, 34 84, 18 72 Z"
+        fill="black"
+        stroke="black"
+        stroke-width="7"
+        stroke-linejoin="round"
+      />
+    </mask>
+  </defs>
+
+  <!-- Deep space squircle emblem background -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)" />
+
+  <!-- Planet Sphere with orbital cutout -->
+  <circle cx="62" cy="66" r="35" fill="url(#planetGrad)" mask="url(#planetCutout)" />
+
+  <!-- Sweeping Orbital Ring & Ascent Trajectory -->
+  <path
+    d="M 27 64 C 15 74, 16 86, 33 85 C 56 83, 86 62, 106 38 C 84 58, 54 76, 33 77 C 24 77, 23 71, 28 66 Z"
+    fill="url(#ringGrad)"
+  />
+
+  <!-- Four-Point Star at Orbital Apex -->
+  <path
+    d="M 110 18 L 113.2 28.8 L 124 32 L 113.2 35.2 L 110 46 L 106.8 35.2 L 96 32 L 106.8 28.8 Z"
+    fill="#ffffff"
+  />
+</svg>

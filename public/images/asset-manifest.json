@@ -1,0 +1,364 @@
+{
+  "project": "revatya",
+  "location": "global",
+  "generatedAt": "2026-10-26T08:45:03.585Z",
+  "images": [
+    {
+      "id": "orbital-city-hero",
+      "outputPath": "/images/hero/orbital-city-hero.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Hero conceptual architectural visualisation of a vast orbital city from human eye level",
+      "prompt": "Generate a wide 16:9 photorealistic architectural visualisation of a vast orbital city in low Earth orbit, viewed from inside at human eye level. The foreground is a refined public observation gallery with sophisticated minimalist silver and brushed aluminium architectural details, continuous curved glass beams, and subtle warm interior architectural lighting. Through enormous floor-to-ceiling structural windows, the curvature of Earth and atmospheric limb are clearly visible below. In the middle distance outside, interconnected orbital city habitat rings, solar arrays, docking spine infrastructure, and two sleek orbital transfer spacecraft approaching a docking berth suggest a functioning orbital metropolis. Monumental scale, inhabited and interconnected, physically plausible sunlight and Earth albedo, Leica architectural photography, 24mm wide angle lens, no text, no logos, no watermarks, no HUD.",
+      "bytes": 154958,
+      "generatedAt": "2026-10-26T08:45:03.609Z"
+    },
+    {
+      "id": "orbital-city-exterior",
+      "outputPath": "/images/city/orbital-city-exterior.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Exterior architectural overview of the interconnected orbital city above Earth",
+      "prompt": "Generate a wide 16:9 photorealistic exterior orbital photograph of a monumental modular space city in Earth orbit. Interconnected habitat rings, central structural logistics spine, large radiator wings, solar power arrays, industrial microgravity bays, and an orbital port with docked cargo transport vehicles. Refined white ceramic, titanium, and brushed silver materials catching crisp orbital sunlight against the deep blue curvature of Earth below. Plausible aerospace engineering, architectural clarity, cinematic scale, no text, no watermarks, no sci-fi neon.",
+      "bytes": 296574,
+      "generatedAt": "2026-10-26T08:45:05.151Z"
+    },
+    {
+      "id": "orbital-city-cutaway",
+      "outputPath": "/images/city/orbital-city-cutaway.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Architectural sectional concept showing layered multi-deck interior systems and transit corridors",
+      "prompt": "Generate a wide 16:9 photorealistic architectural sectional perspective inside a large-scale orbital habitat module showing three interconnected deck levels: an upper hydroponic and environmental life-support terrace, a central pedestrian transit concourse with clean pressurized bulkheads, and a lower utility and power distribution spine. Refined white and anodized silver interior architecture, natural-spectrum diffused skylight panels, human scale, aerospace precision, no text, no labels, no watermarks.",
+      "bytes": 169216,
+      "generatedAt": "2026-10-26T08:45:05.188Z"
+    },
+    {
+      "id": "orbital-habitation-commons",
+      "outputPath": "/images/city/orbital-habitation-commons.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Habitation and shared civic commons designed for long-duration orbital living",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of a serene shared residential commons inside an orbital space city. Curved structural ribs in matte warm white and brushed aluminium, integrated botanical green wall panels for psychological wellbeing, comfortable modular seating, acoustic timber accents, and a large observation viewport revealing the blue curve of Earth. Calm, human-centred Apple-grade architectural minimalism, physically accurate lighting, no text, no watermarks.",
+      "bytes": 149484,
+      "generatedAt": "2026-10-26T08:45:05.989Z"
+    },
+    {
+      "id": "thesis-living-in-orbit",
+      "outputPath": "/images/journey/thesis-living-in-orbit.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Home Section 2 Thesis — Human-eye-level architectural transit and observation gallery at orbital sunrise",
+      "prompt": "Generate a wide 16:9 photorealistic architectural photograph from inside a luminous orbital transit concourse and observation gallery at orbital sunrise. Two aerospace engineers in minimalist dark technical attire stand beside a sweeping curved structural window overlooking the glowing atmospheric limb of Earth and an exterior modular orbital ring connected by pressurized bridges. Warm indirect architectural lighting, brushed titanium and matte white composite structure, serene Apple-grade design clarity, no text, no watermarks.",
+      "bytes": 116266,
+      "generatedAt": "2026-10-26T08:45:03.612Z"
+    },
+    {
+      "id": "vision-isolated-vs-connected",
+      "outputPath": "/images/vision/vision-isolated-vs-connected.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Vision Page — Contrasting an approaching crew transport craft with permanent interconnected orbital infrastructure",
+      "prompt": "Generate a wide 16:9 photorealistic orbital photograph showing a sleek crew transport spacecraft in the foreground approaching a massive, permanent interconnected orbital infrastructure network in low Earth orbit. The orbital facility features a long axial utility truss, pressurized habitat rings, docked cargo pods, and wide radiative cooling arrays illuminated by crisp sunlight above a cloud-covered Earth. High-contrast aerospace photography, physically plausible scale, no text, no watermarks.",
+      "bytes": 183406,
+      "generatedAt": "2026-10-26T08:45:03.613Z"
+    },
+    {
+      "id": "vision-connected-ecosystem",
+      "outputPath": "/images/vision/vision-connected-ecosystem.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Vision Page — Twilight panoramic view of a multi-district orbital city ecosystem above Earth terminator",
+      "prompt": "Generate a wide 16:9 photorealistic panoramic orbital view above Earths twilight terminator line showing a connected orbital ecosystem: warm interior architectural light glowing softly from habitation windows, research laboratory clusters, microgravity industrial modules, and an illuminated docking port along a central spine. Deep sapphire Earth atmosphere below, realistic aerospace materials, serene monumental architecture, no text, no watermarks.",
+      "bytes": 90240,
+      "generatedAt": "2026-10-26T08:45:03.615Z"
+    },
+    {
+      "id": "shared-utility-infrastructure",
+      "outputPath": "/images/economy/shared-utility-infrastructure.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Space Economy — Multi-operator commercial modules and cargo tugs plugged into a shared orbital utility bus",
+      "prompt": "Generate a wide 16:9 photorealistic aerospace engineering visualisation of a shared orbital utility spine in low Earth orbit. Multiple distinct commercial research and manufacturing modules are berthed to standardized radial ports along a central utility core that distributes high-voltage solar power, fluid thermal rejection loops, and automated robotic cargo handling. An orbital transfer tug is berthing a payload container in the midground. Crisp orbital lighting, realistic engineering detail, no text, no watermarks.",
+      "bytes": 179768,
+      "generatedAt": "2026-10-26T08:45:03.616Z"
+    },
+    {
+      "id": "multidisciplinary-engineering-deck",
+      "outputPath": "/images/partners/multidisciplinary-engineering-deck.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Partners & Collaboration — Multidisciplinary orbital systems engineering and mission synthesis deck",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of an advanced orbital systems engineering and mission synthesis deck. A multidisciplinary team of architects and engineers collaborates around a minimalist glass table showing structural models, while wide observation windows behind them look directly into an active orbital integration bay with a modular habitat node and Earths horizon beyond. Warm neutral lighting, brushed aluminum, calm architectural elegance, no text, no watermarks.",
+      "bytes": 105084,
+      "generatedAt": "2026-10-26T08:45:03.617Z"
+    },
+    {
+      "id": "district-01-habitation",
+      "outputPath": "/images/districts/district-01-habitation.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector H-01 Habitation — Acoustic-isolated residential crew quarters and circadian neighborhood corridor",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of the Habitation District inside an orbital city. A quiet curved residential corridor with private acoustic-isolated cabin doorways, soft circadian ceiling illumination, warm matte composite wall panels, brushed metal handrails, and a recessed radiation-shielded window alcove looking out at Earth. Calm, restorative, human-centred spacecraft architecture, no text, no watermarks.",
+      "bytes": 42322,
+      "generatedAt": "2026-10-26T08:45:03.618Z"
+    },
+    {
+      "id": "district-02-orbital-port",
+      "outputPath": "/images/districts/district-02-orbital-port.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector P-01 Orbital Port — Axial berthing hub with standardized docking adapters and cargo transfer rails",
+      "prompt": "Generate a wide 16:9 photorealistic orbital photograph of the Axial Orbital Port and Logistics Hub of a space city. Multiple standardized international docking ports, laser approach alignment beacons, automated cargo pallet transfer rails along a metallic truss, and a commercial resupply spacecraft in final soft-capture alignment. Earth limb in background, sharp orbital sunlight, authentic aerospace mechanisms, no text, no watermarks.",
+      "bytes": 264762,
+      "generatedAt": "2026-10-26T08:45:03.621Z"
+    },
+    {
+      "id": "district-03-research",
+      "outputPath": "/images/districts/district-03-research.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector R-02 Research District — Microgravity-isolated scientific laboratory bay with modular payload racks",
+      "prompt": "Generate a wide 16:9 photorealistic interior of the Research District laboratory module in orbit. Precision vibration-isolated payload racks, a sealed stainless-steel and glass microgravity fluid-physics glovebox, cryogenic sample storage drawers, and an optical Earth-observation instrument port. Clean neutral laboratory lighting, anodized aluminum structure, realistic scientific hardware, no text, no watermarks.",
+      "bytes": 152722,
+      "generatedAt": "2026-10-26T08:45:03.624Z"
+    },
+    {
+      "id": "district-04-manufacturing",
+      "outputPath": "/images/districts/district-04-manufacturing.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector M-03 Industrial District — Automated orbital crystal growth and optical fiber manufacturing cleanroom",
+      "prompt": "Generate a wide 16:9 photorealistic interior of the Industrial Manufacturing District in an orbital complex. Automated high-purity semiconductor crystal growth furnaces and ZBLAN optical fiber drawing towers housed inside sealed containment enclosures along a cylindrical microgravity cleanroom bay, tended by a precision rail-mounted robotic manipulator. Brushed steel, white cleanroom surfaces, subtle amber and cool white status lighting, no text, no watermarks.",
+      "bytes": 188468,
+      "generatedAt": "2026-10-26T08:45:03.627Z"
+    },
+    {
+      "id": "district-05-energy-thermal",
+      "outputPath": "/images/districts/district-05-energy-thermal.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector E-04 Energy & Thermal — Monumental deployable radiator wings and sun-tracking solar arrays",
+      "prompt": "Generate a wide 16:9 photorealistic exterior orbital photograph focusing on the Energy and Thermal Management Spine of a space city. Massive deployable white ceramic radiative heat-rejection wings and sun-tracking photovoltaic solar arrays mounted on rotating alpha gimbals, connected to heavy insulated ammonia thermal manifolds and high-voltage DC switchgear modules against deep black space and Earths blue horizon. No text, no watermarks.",
+      "bytes": 212360,
+      "generatedAt": "2026-10-26T08:45:03.629Z"
+    },
+    {
+      "id": "district-06-life-support",
+      "outputPath": "/images/districts/district-06-life-support.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector L-05 Life Support — Central ECLSS utility core with closed-loop air and water recovery manifolds",
+      "prompt": "Generate a wide 16:9 photorealistic interior engineering photograph of the central Life-Support Infrastructure (ECLSS) utility core inside an orbital city. Modular physico-chemical CO2 scrubbing beds, rotary water distillation and catalytic oxidation columns, color-coded stainless-steel potable water and oxygen manifolds, and automated sector pressure-isolation bulkheads. Immaculate aerospace utility engineering, crisp diagnostic lighting, no text, no watermarks.",
+      "bytes": 211348,
+      "generatedAt": "2026-10-26T08:45:03.630Z"
+    },
+    {
+      "id": "district-07-construction-robotics",
+      "outputPath": "/images/districts/district-07-construction-robotics.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Sector C-06 Construction & Robotics — Exterior inchworm robotic manipulators and inspection drones assembling a module",
+      "prompt": "Generate a wide 16:9 photorealistic exterior orbital photograph of the Construction and Maintenance District. Two large track-mounted dexterous robotic manipulator arms and a compact free-flying optical inspection drone are installing a micrometeoroid shield panel onto a newly berthed pressurized habitat module along the orbital city truss spine. High-contrast sunlight in low Earth orbit, realistic robotics, no text, no watermarks.",
+      "bytes": 191872,
+      "generatedAt": "2026-10-26T08:45:03.631Z"
+    },
+    {
+      "id": "district-08-shared-environments",
+      "outputPath": "/images/districts/district-08-shared-environments.webp",
+      "model": "gemini-2.5-flash-image@europe-west1",
+      "purpose": "Sector S-07 Shared Human Environments — Panoramic Earth-observation cupola and biophilic restorative commons",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of the Shared Human Environments cupola in an orbital city. A multi-facet panoramic structural glass dome looks down at oceans and clouds on Earth, surrounded by tiered acoustic seating, warm wood-grain composite surfaces, and vertical hydroponic green plant walls providing psychological restoration for long-duration crews. Serene natural orbital light, Apple-grade minimalism, no text, no watermarks.",
+      "bytes": 224762,
+      "generatedAt": "2026-10-26T08:45:16.547Z"
+    },
+    {
+      "id": "microgravity-manufacturing",
+      "outputPath": "/images/applications/microgravity-manufacturing.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 01 — Cleanroom microgravity manufacturing bay for specialized crystals and optical fibers",
+      "prompt": "Generate a wide 16:9 photorealistic interior of an advanced orbital microgravity manufacturing facility and cleanroom bay. Precision automated robotic arms and sealed crystal-growth and optical fiber drawing containment chambers mounted along a cylindrical zero-gravity industrial spine. Brushed stainless steel, white cleanroom panels, subtle cool task lighting, high-precision aerospace hardware, realistic engineering environment, no text, no logos, no watermarks.",
+      "bytes": 176228,
+      "generatedAt": "2026-10-26T08:45:05.952Z"
+    },
+    {
+      "id": "orbital-logistics-port",
+      "outputPath": "/images/applications/orbital-logistics-port.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 02 — Orbital logistics port, docking berths, and automated cargo handling infrastructure",
+      "prompt": "Generate a wide 16:9 photorealistic exterior view of an orbital logistics port and docking hub attached to a large space city. A reusable orbital cargo tug is aligned with a standardized berthing mechanism while articulated robotic cranes transfer pressurized logistics containers along an exterior truss spine. Earth horizon in the background, crisp high-contrast orbital sunlight, realistic spacecraft thermal blankets and metallic surfaces, no text, no watermarks.",
+      "bytes": 195002,
+      "generatedAt": "2026-10-26T08:45:06.788Z"
+    },
+    {
+      "id": "orbital-research-lab",
+      "outputPath": "/images/applications/orbital-research-lab.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 03 — Orbital scientific laboratory for life sciences, fluid physics, and closed-loop research",
+      "prompt": "Generate a wide 16:9 photorealistic interior of a modern orbital research laboratory. Modular scientific payload racks, sealed fluid-physics gloveboxes, and bioregenerative plant-growth test chambers arranged along a wide curved laboratory corridor. Two researchers in clean minimalist technical workwear inspecting an experiment module. Crisp architectural lighting, credible aerospace laboratory hardware, no text, no watermarks.",
+      "bytes": 216688,
+      "generatedAt": "2026-10-26T08:45:06.752Z"
+    },
+    {
+      "id": "app-04-space-resource-utilisation",
+      "outputPath": "/images/applications/app-04-space-resource-utilisation.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 04 — In-situ space resource utilisation and volatile processing demonstration rig",
+      "prompt": "Generate a wide 16:9 photorealistic deep-space engineering visualisation of a robotic space resource utilisation and volatile extraction lander anchored to a dark regolith asteroid surface. Solar-thermal concentrator mirrors and a sealed regolith volatile processing reactor extract water ice into spherical cryogenic storage tanks, with stars and a distant prospecting relay satellite in deep space. Realistic aerospace hardware, no sci-fi lasers, no text, no watermarks.",
+      "bytes": 256920,
+      "generatedAt": "2026-10-26T08:45:08.389Z"
+    },
+    {
+      "id": "app-05-habitation-training",
+      "outputPath": "/images/applications/app-05-habitation-training.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 05 — Specialist crew habitation, pre-mission training, and commercial human spaceflight deck",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural view of a professional orbital habitation and crew training deck. Two specialist crew members in clean flight suits float gently near an ergonomic workstation and medical telemetry suite, with a wide reinforced viewport showing Earths curvature and a docked crew capsule outside. Refined matte white and brushed aluminum interior, warm human-centred lighting, no text, no watermarks.",
+      "bytes": 121106,
+      "generatedAt": "2026-10-26T08:45:07.552Z"
+    },
+    {
+      "id": "app-06-assembly-servicing",
+      "outputPath": "/images/applications/app-06-assembly-servicing.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Application 06 — In-orbit structural assembly and spacecraft servicing bay assembling a large aperture reflector",
+      "prompt": "Generate a wide 16:9 photorealistic exterior orbital photograph of an unpressurized in-orbit assembly and servicing workbay attached to a space city spine. Precision dexterous robotic arms assemble hexagonal mirror segments onto a large-aperture space telescope bus held in a rotatable servicing cradle, with Earths blue atmosphere below. Crisp orbital sunlight, gold multi-layer insulation, realistic aerospace engineering, no text, no watermarks.",
+      "bytes": 205738,
+      "generatedAt": "2026-10-26T08:45:08.389Z"
+    },
+    {
+      "id": "stage-01-foundational-research",
+      "outputPath": "/images/roadmap/stage-01-foundational-research.webp",
+      "model": "gemini-2.5-flash-image@europe-west4",
+      "purpose": "Stage 01 Foundational Research — Terrestrial systems engineering and orbital architecture research studio",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of a terrestrial aerospace systems-engineering research studio. Large high-resolution glass displays and architectural drafting tables show wireframes of orbital habitat rings, ECLSS mass-balance diagrams, and astrodynamics trajectories. Minimalist concrete, brushed steel, and warm indirect lighting, quiet intellectual focus, no readable text, no watermarks.",
+      "bytes": 186064,
+      "generatedAt": "2026-10-26T08:45:19.790Z"
+    },
+    {
+      "id": "stage-02-subsea-analog",
+      "outputPath": "/images/roadmap/stage-02-subsea-analog.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Stage 02 Extreme-Environment Test Programmes — Pressurized subsea closed-environment analog habitat on the ocean floor",
+      "prompt": "Generate a wide 16:9 photorealistic underwater architectural photograph of a pressurized cylindrical subsea analog research habitat anchored on a rocky continental shelf in deep clear cobalt-blue ocean water. Warm interior light glows through thick circular viewports while exterior environmental sensor pods and umbilical telemetry cables test closed-loop habitat monitoring. Realistic marine engineering, cinematic natural underwater light rays, no text, no watermarks.",
+      "bytes": 94044,
+      "generatedAt": "2026-10-26T08:45:10.790Z"
+    },
+    {
+      "id": "stage-03-system-prototypes",
+      "outputPath": "/images/roadmap/stage-03-system-prototypes.webp",
+      "model": "gemini-2.5-flash-image@us-central1",
+      "purpose": "Stage 03 Technology & System Prototypes — Full-scale orbital docking and ECLSS prototype in a thermal-vacuum chamber",
+      "prompt": "Generate a wide 16:9 photorealistic aerospace test-facility photograph showing a full-scale metallic orbital docking ring and modular life-support utility bulkhead prototype mounted inside an open stainless-steel thermal-vacuum test chamber on Earth. Bundled sensor harnesses, optical laser metrology trackers, and cleanroom lighting reflect off the chamber walls. Authentic hardware-in-the-loop qualification environment, no text, no watermarks.",
+      "bytes": 253858,
+      "generatedAt": "2026-10-26T08:45:20.043Z"
+    },
+    {
+      "id": "stage-04-initial-orbital-node",
+      "outputPath": "/images/roadmap/stage-04-initial-orbital-node.webp",
+      "model": "gemini-2.5-flash-image@us-east4",
+      "purpose": "Stage 04 Initial Orbital Infrastructure Concept — First minimum-viable orbital platform module in LEO",
+      "prompt": "Generate a wide 16:9 photorealistic orbital photograph of an initial minimum-viable orbital infrastructure platform in low Earth orbit: a single large core habitat and research module with four radial berthing nodes, symmetric solar and radiator wings, and one visiting crew spacecraft docked at the forward port. Earths curved blue horizon below, crisp sunlight, realistic near-term commercial space station engineering, no text, no watermarks.",
+      "bytes": 152990,
+      "generatedAt": "2026-10-26T08:45:22.666Z"
+    },
+    {
+      "id": "stage-05-city-expansion",
+      "outputPath": "/images/roadmap/stage-05-city-expansion.webp",
+      "model": "gemini-2.5-flash-image@us-west1",
+      "purpose": "Stage 05 Expansion Toward a City — Mature multi-ring expandable orbital city complex in low Earth orbit",
+      "prompt": "Generate a wide 16:9 photorealistic orbital photograph of a mature, expanded orbital city in low Earth orbit, evolved from a central spine into multiple concentric habitation rings, research sectors, industrial bays, and an active orbital port with multiple spacecraft. Dramatic high-altitude view above Earths cloud deck and sunlit ocean, refined white and titanium aerospace architecture, no text, no watermarks.",
+      "bytes": 223158,
+      "generatedAt": "2026-10-26T08:45:25.292Z"
+    },
+    {
+      "id": "rp-01-eclss-loop",
+      "outputPath": "/images/research/rp-01-eclss-loop.webp",
+      "model": "gemini-2.5-flash-image@europe-west1",
+      "purpose": "RP-01 Habitat Systems & Life Support — Dual-tier closed-loop air and water recovery hardware rack",
+      "prompt": "Generate a wide 16:9 photorealistic close-up engineering photograph of an advanced closed-loop Environmental Control and Life Support System (ECLSS) test rack. Precision stainless-steel fluid tubing, catalytic water purification columns, automated pressure isolation valves, and inline microbial/air-quality optical sensors housed in a modular spacecraft utility frame. Crisp laboratory lighting, high engineering realism, no text, no watermarks.",
+      "bytes": 127028,
+      "generatedAt": "2026-10-26T08:45:31.405Z"
+    },
+    {
+      "id": "rp-02-radiation-shielding",
+      "outputPath": "/images/research/rp-02-radiation-shielding.webp",
+      "model": "gemini-2.5-flash-image@europe-west4",
+      "purpose": "RP-02 Radiation & Human Health — Multi-layer hydrogen-rich water-wall radiation shielding cutaway",
+      "prompt": "Generate a wide 16:9 photorealistic architectural cutaway mockup of a spacecraft radiation storm shelter wall assembly: outer micrometeoroid Whipple bumper, structural aluminum-lithium pressure hull, concentric translucent high-density polyethylene and modular potable water-wall bladders, and an inner acoustic crew sleeping berth fitted with solid-state active radiation dosimeters. Clean studio engineering lighting, no text, no watermarks.",
+      "bytes": 101394,
+      "generatedAt": "2026-10-26T08:45:30.431Z"
+    },
+    {
+      "id": "rp-03-modular-coupler",
+      "outputPath": "/images/research/rp-03-modular-coupler.webp",
+      "model": "gemini-2.5-flash-image@global",
+      "purpose": "RP-03 Orbital Architecture & Construction — Standardized structural, power, fluid, and data berthing coupler",
+      "prompt": "Generate a wide 16:9 photorealistic aerospace engineering close-up of a standardized orbital module interconnect mechanism in space. Precision CNC-machined titanium docking latches, automated blind-mate high-voltage DC electrical connectors, dual-seal thermal fluid quick-disconnects, and fiber-optic data couplings joining two pressurized habitat bulkheads. Sharp orbital lighting, no text, no watermarks.",
+      "bytes": 154584,
+      "generatedAt": "2026-10-26T08:45:32.803Z"
+    },
+    {
+      "id": "rp-04-thermal-heat-rejection",
+      "outputPath": "/images/research/rp-04-thermal-heat-rejection.webp",
+      "model": "gemini-2.5-flash-image@us-west1",
+      "purpose": "RP-04 Power & Thermal Systems — High-capacity heat-exchanger manifold and deployable radiator array",
+      "prompt": "Generate a wide 16:9 photorealistic exterior orbital engineering view of a spacecraft active thermal control system: a dual-loop brazed heat-exchanger manifold at the base of a large deployable white radiator wing in low Earth orbit, with micrometeoroid-armored coolant conduits and sun-tracking solar arrays in the background. Deep space contrast, authentic aerospace hardware, no text, no watermarks.",
+      "bytes": 156250,
+      "generatedAt": "2026-10-26T08:45:43.487Z"
+    },
+    {
+      "id": "rp-05-human-factors-acoustics",
+      "outputPath": "/images/research/rp-05-human-factors-acoustics.webp",
+      "model": "gemini-2.5-flash-image@us-east4",
+      "purpose": "RP-05 Human Factors & Habitation — Volumetric crew cabin mockup with acoustic panels and circadian lighting",
+      "prompt": "Generate a wide 16:9 photorealistic interior architectural photograph of a long-duration orbital crew quarter and human-factors mockup. Micro-perforated acoustic dampening panels, warm tunable circadian LED light coves, a private sleep alcove with personal storage, and a clean unobstructed emergency egress corridor leading to a pressure hatch. Calm, humane, Apple-inspired industrial design, no text, no watermarks.",
+      "bytes": 106952,
+      "generatedAt": "2026-10-26T08:45:40.762Z"
+    },
+    {
+      "id": "rp-06-automated-cargo-handling",
+      "outputPath": "/images/research/rp-06-automated-cargo-handling.webp",
+      "model": "gemini-2.5-flash-image@us-west1",
+      "purpose": "RP-06 Orbital Logistics & Services — Automated pressurized cargo transfer airlock and robotic pallet rail",
+      "prompt": "Generate a wide 16:9 photorealistic interior view of an automated orbital logistics transfer corridor and cargo airlock. Standardized modular cargo pallets move smoothly along an overhead robotic guide rail from a docked spacecraft hatch into organized pressurized storage bays with optical barcode/RFID scanners. Clean metallic and white composite architecture, no text, no watermarks.",
+      "bytes": 119562,
+      "generatedAt": "2026-10-26T08:45:42.151Z"
+    },
+    {
+      "id": "rp-07-microgravity-crystallisation",
+      "outputPath": "/images/research/rp-07-microgravity-crystallisation.webp",
+      "model": "gemini-2.5-flash-image@europe-west1",
+      "purpose": "RP-07 Manufacturing & Industrial Applications — Vibration-isolated magnetic levitation furnace in microgravity",
+      "prompt": "Generate a wide 16:9 photorealistic close-up engineering view inside a microgravity materials research rack: a transparent quartz and stainless-steel containerless processing chamber where a glowing molten alloy droplet floats in weightlessness, surrounded by laser heating optics, active magnetic vibration-isolation actuators, and high-speed metrology cameras. Authentic space laboratory hardware, no text, no watermarks.",
+      "bytes": 117580,
+      "generatedAt": "2026-10-26T08:45:46.604Z"
+    },
+    {
+      "id": "rp-08-orbital-traffic-governance",
+      "outputPath": "/images/research/rp-08-orbital-traffic-governance.webp",
+      "model": "gemini-2.5-flash-image@europe-west4",
+      "purpose": "RP-08 Economics, Governance & Sustainability — Orbital traffic coordination and debris safety monitoring console",
+      "prompt": "Generate a wide 16:9 photorealistic interior photograph of an orbital operations and traffic governance workstation inside a space city. A curved minimalist glass display shows 3D orbital debris conjunction ellipsoids, safe approach corridors, and multi-tenant power/thermal utility allocation graphs, while through a viewport ahead an visiting spacecraft holds at a safe stand-off waypoint above Earth. No readable text, no watermarks.",
+      "bytes": 104790,
+      "generatedAt": "2026-10-26T08:45:53.476Z"
+    },
+    {
+      "id": "asteroid-prospecting-concept",
+      "outputPath": "/images/research/asteroid-prospecting-concept.webp",
+      "model": "gemini-2.5-flash-image",
+      "purpose": "Long-horizon robotic asteroid prospecting probe inspecting a near-Earth carbonaceous body",
+      "prompt": "Generate a wide 16:9 photorealistic deep-space engineering visualisation of an autonomous robotic prospecting spacecraft hovering near the rugged surface of a dark carbonaceous near-Earth asteroid. The probe features high-efficiency solar arrays, optical and spectroscopic sensor turrets, and a compact surface sampling mechanism illuminated by crisp directional sunlight against deep space. Plausible aerospace engineering, no laser beams, no text, no watermarks.",
+      "bytes": 173184,
+      "generatedAt": "2026-10-26T08:45:42.952Z"
+    }
+  ],
+  "videos": [
+    {
+      "id": "orbital-city-hero-loop",
+      "outputPath": "/video/orbital-city-hero-loop.mp4",
+      "model": "veo-3.1-generate-001",
+      "purpose": "Silent, loopable cinematic hero ambient video of the orbital city",
+      "prompt": "Silent, seamless loopable cinematic architectural shot from inside a refined orbital city observation gallery looking out through monumental glass windows at Earth rotating gently below. Outside the window, interconnected silver and white orbital city rings and a docked spacecraft gleam in calm orbital sunlight. Slow, ultra-smooth forward camera drift, physically accurate lighting, serene atmosphere, no text, no HUD, no watermark.",
+      "bytes": 6015173,
+      "generatedAt": "2026-10-26T08:45:03.609Z"
+    },
+    {
+      "id": "orbital-city-scroll",
+      "outputPath": "/video/orbital-city-scroll.mp4",
+      "webmPath": "/video/orbital-city-scroll.webm",
+      "posterWebp": "/images/background/orbital-city-scroll-poster.webp",
+      "posterJpg": "/images/background/orbital-city-scroll-poster.jpg",
+      "model": "veo-3.1-generate-001 (Vertex AI us-central1)",
+      "purpose": "Persistent scroll-synchronized cinematic background video of monumental orbital city with seamless ambient idle motion",
+      "prompt": "Ultra cinematic, photorealistic 3D architectural flythrough inside Revatya, a monumental self-sustaining city in outer space above Earth. Camera glides smoothly from inside and among vast interconnected futuristic city structures, monumental silver and titanium architecture, interconnected residential towers, transparent observation structures, elevated transit routes, illuminated walkways, research facilities, and busy docking spaceports. Through panoramic glass structures and architectural openings, magnificent glowing blue Earth suspended in deep black space with distant stars. Large elegant spacecraft continuously approach and depart from spaceports with physically convincing graceful motion.",
+      "bytesMp4": 8034294,
+      "bytesWebm": 5247475,
+      "generatedAt": "2026-10-26T14:44:42.395Z"
+    }
+  ]
+}

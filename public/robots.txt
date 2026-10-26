@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://revatya.org/sitemap.xml

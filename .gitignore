@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+
+# Production build
+dist/
+build/
+out/
+.next/
+
+# TypeScript cache
+*.tsbuildinfo
+.eslintcache
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel
+
+# Firebase
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# System
+.DS_Store
+Thumbs.db
+
+# Blender temporary files and intermediate renders/backups
+*.blend1
+revatya_orbital_city.blend
+blender/exports/*.mp4
+
+# Intermediate generation video artifacts
+public/video/*-raw.mp4
+public/video/orbital-city-3d-scroll.mp4
+public/video/orbital-city-inside-out-3d.mp4
+public/video/orbital-city-realistic-humans.mp4

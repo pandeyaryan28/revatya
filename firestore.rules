@@ -1,0 +1,201 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// This security rules file assumes the following data structures:
+//
+// Collection: contact_inquiries
+// Document ID: {inquiryId} (auto-generated)
+// Access: Write-only public intake (create only; read, update, delete denied)
+// Fields:
+//   - fullName: string (required, 1..120 chars, immutable) - Submitter's full name
+//   - email: string (required, 3..180 chars, email format, immutable) - Submitter's email address (PII)
+//   - organisation: string (optional, 0..200 chars, immutable) - Submitter's organisation or institution
+//   - role: string (optional, 0..200 chars, immutable) - Submitter's role or title
+//   - category: string (required, enum, immutable) - Inquiry category
+//   - message: string (required, 10..5000 chars, immutable) - Inquiry message body
+//   - location: string (optional, 0..200 chars, immutable) - Submitter's geographic location
+//   - consent: bool (required, must be true, immutable) - Explicit consent to store inquiry
+//   - sourcePage: string (optional, 0..200 chars, immutable) - Originating route/page
+//   - createdAt: timestamp (required, must equal request.time, immutable) - Submission server timestamp
+//
+// Collection: join_interest
+// Document ID: {submissionId} (auto-generated)
+// Access: Write-only public intake (create only; read, update, delete denied)
+// Fields:
+//   - fullName: string (required, 1..120 chars, immutable) - Applicant's full name
+//   - email: string (required, 3..180 chars, email format, immutable) - Applicant's email address (PII)
+//   - location: string (optional, 0..500 chars, immutable) - Applicant's location
+//   - discipline: string (required, 1..120 chars, immutable) - Primary technical/research discipline
+//   - experienceSummary: string (required, 10..5000 chars, immutable) - Summary of relevant work
+//   - portfolioUrl: string (optional, 0..500 chars, immutable) - Portfolio, publication, or GitHub URL/reference
+//   - interestStatement: string (required, 10..5000 chars, immutable) - Statement of interest in Revatya
+//   - availability: string (required, 1..160 chars, immutable) - Availability window/commitment
+//   - consent: bool (required, must be true, immutable) - Explicit consent to store submission
+//   - createdAt: timestamp (required, must equal request.time, immutable) - Submission server timestamp
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Validate required fields exist
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // Validate that the document contains only the allowed fields
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Validate string type and length bounds
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    // Validate optional string (if present, must be string and within length bounds)
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() >= minLen &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    // Validate email format and length bounds
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 3 &&
+        email.size() <= 180 &&
+        email.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidContactInquiry(data) {
+      let requiredFields = [
+        'fullName',
+        'email',
+        'category',
+        'message',
+        'consent',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'fullName',
+        'email',
+        'organisation',
+        'role',
+        'category',
+        'message',
+        'location',
+        'consent',
+        'sourcePage',
+        'createdAt'
+      ];
+      let validCategories = [
+        'Technical Partnership',
+        'Research Collaboration',
+        'Commercial Application',
+        'Investment or Strategic Support',
+        'Careers / Joining',
+        'Media or Speaking',
+        'General Enquiry',
+        'Technical or research collaboration',
+        'Technology or manufacturing partnership',
+        'Aerospace or infrastructure',
+        'Commercial use case',
+        'Investment or strategic discussion',
+        'Media or speaking enquiry',
+        'General enquiry'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        validStringLength('fullName', 1, 120) &&
+        isValidEmail(data.email) &&
+        data.category is string &&
+        data.category in validCategories &&
+        validStringLength('message', 10, 5000) &&
+        data.consent is bool &&
+        data.consent == true &&
+        data.createdAt is timestamp &&
+        data.createdAt == request.time &&
+        isValidOptionalString('organisation', 0, 200) &&
+        isValidOptionalString('role', 0, 200) &&
+        isValidOptionalString('location', 0, 200) &&
+        isValidOptionalString('sourcePage', 0, 200);
+    }
+
+    function isValidJoinInterest(data) {
+      let requiredFields = [
+        'fullName',
+        'email',
+        'discipline',
+        'experienceSummary',
+        'interestStatement',
+        'availability',
+        'consent',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'fullName',
+        'email',
+        'location',
+        'discipline',
+        'experienceSummary',
+        'portfolioUrl',
+        'interestStatement',
+        'availability',
+        'consent',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        validStringLength('fullName', 1, 120) &&
+        isValidEmail(data.email) &&
+        validStringLength('discipline', 1, 120) &&
+        validStringLength('experienceSummary', 10, 5000) &&
+        validStringLength('interestStatement', 10, 5000) &&
+        validStringLength('availability', 1, 160) &&
+        data.consent is bool &&
+        data.consent == true &&
+        data.createdAt is timestamp &&
+        data.createdAt == request.time &&
+        isValidOptionalString('location', 0, 500) &&
+        isValidOptionalString('portfolioUrl', 0, 500);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // Public collaboration & contact inquiry intake (write-only; PII protected)
+    match /contact_inquiries/{inquiryId} {
+      allow create: if isValidContactInquiry(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    // Public contributor & talent interest intake (write-only; PII protected)
+    match /join_interest/{submissionId} {
+      allow create: if isValidJoinInterest(request.resource.data);
+      allow read, update, delete: if false;
+    }
+
+    // Default deny on all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

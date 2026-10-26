@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-primary: #F5F5F7;
+    --bg-secondary: #FFFFFF;
+    --bg-elevated: #ECECEF;
+    --surface-glass: rgba(255, 255, 255, 0.78);
+    --surface-glass-hover: rgba(255, 255, 255, 0.92);
+    --surface-glass-elevated: rgba(255, 255, 255, 0.88);
+    --border-specular: rgba(15, 23, 42, 0.08);
+    --border-specular-bright: rgba(15, 23, 42, 0.16);
+    --text-primary: #111113;
+    --text-secondary: #52525B;
+    --text-tertiary: #71717A;
+    --accent-primary: #111113;
+    --accent-subtle: rgba(17, 17, 19, 0.05);
+    --shadow-ambient: 0 12px 36px -8px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+    --shadow-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.85);
+    --spring-easing: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
+    --bg-primary: #020305;
+    --bg-secondary: #06080D;
+    --bg-elevated: #0B0E16;
+    --surface-glass: rgba(10, 12, 18, 0.68);
+    --surface-glass-hover: rgba(16, 19, 28, 0.82);
+    --surface-glass-elevated: rgba(8, 10, 15, 0.86);
+    --border-specular: rgba(255, 255, 255, 0.08);
+    --border-specular-bright: rgba(255, 255, 255, 0.18);
+    --text-primary: #F5F5F7;
+    --text-secondary: #A1A1AA;
+    --text-tertiary: #6E6E73;
+    --accent-primary: #F5F5F7;
+    --accent-subtle: rgba(245, 245, 247, 0.06);
+    --shadow-ambient: 0 24px 64px -12px rgba(0, 0, 0, 0.85), 0 4px 16px -2px rgba(0, 0, 0, 0.65);
+    --shadow-inner-glow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.45s var(--spring-easing), color 0.45s var(--spring-easing);
+    overflow-x: clip;
+  }
+}
+
+/* Apple Liquid Glass & Deep-Space Titanium Surface Utilities */
+.liquid-glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(32px) saturate(140%);
+  -webkit-backdrop-filter: blur(32px) saturate(140%);
+  border: 1px solid var(--border-specular);
+  box-shadow: var(--shadow-ambient), var(--shadow-inner-glow);
+  transition:
+    transform 0.5s var(--spring-easing),
+    background-color 0.4s var(--spring-easing),
+    border-color 0.4s var(--spring-easing),
+    box-shadow 0.5s var(--spring-easing);
+}
+
+.liquid-glass-interactive:hover {
+  background: var(--surface-glass-hover);
+  border-color: var(--border-specular-bright);
+  transform: translate3d(0, -4px, 0);
+}
+
+.liquid-glass-island {
+  background: var(--surface-glass-elevated);
+  backdrop-filter: blur(40px) saturate(160%);
+  -webkit-backdrop-filter: blur(40px) saturate(160%);
+  border: 1px solid var(--border-specular);
+  box-shadow: var(--shadow-ambient), var(--shadow-inner-glow);
+}
+
+/* Spring Tactile Micro-Interactions */
+.tactile-press {
+  transition: transform 0.38s var(--spring-easing), opacity 0.25s var(--spring-easing), background-color 0.3s var(--spring-easing), border-color 0.3s var(--spring-easing), box-shadow 0.38s var(--spring-easing);
+}
+
+.tactile-press:active {
+  transform: scale(0.975);
+}
+
+/* Subtle Architectural & Deep-Space Astrometric Backdrop */
+.architectural-grid-bg {
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.028) 1px, transparent 1px);
+}
+
+.dark .architectural-grid-bg {
+  background-size: 72px 72px, 72px 72px, 240px 240px, 320px 320px;
+  background-position: 0 0, 0 0, 20px 40px, 130px 170px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(1px 1px at 40px 60px, rgba(255, 255, 255, 0.28) 50%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 180px 120px, rgba(228, 228, 231, 0.20) 50%, transparent 100%);
+}
+
+/* Route Entrance & Scroll Reveal Keyframes */
+@keyframes pageEnterSpring {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.992);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.page-transition-enter {
+  animation: pageEnterSpring 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes orbitalStrokeFlow {
+  0% {
+    stroke-dashoffset: 48;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.orbital-flow-line {
+  stroke-dasharray: 6 6;
+  animation: orbitalStrokeFlow 3.6s linear infinite;
+}
+
+@keyframes subtleOrbitalPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+.orbital-pulse {
+  animation: subtleOrbitalPulse 4.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Ambient Orbital Camera Breathing for Living Background Depth */
+@keyframes orbitalCameraBreathe {
+  0%, 100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.045) translate3d(0, -6px, 0);
+  }
+}
+
+.orbital-camera-breathe {
+  animation: orbitalCameraBreathe 24s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Planetary Horizontal Scroll-Driven Card Stage */
+.planetary-stage-perspective {
+  perspective: 1600px;
+  perspective-origin: 50% 42%;
+  transform-style: preserve-3d;
+}
+
+.planetary-card-layer {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.planetary-horizon-glow {
+  background: radial-gradient(
+    ellipse 75% 42% at 50% 100%,
+    rgba(15, 23, 42, 0.05) 0%,
+    rgba(15, 23, 42, 0.015) 48%,
+    transparent 80%
+  );
+}
+
+.dark .planetary-horizon-glow {
+  background: radial-gradient(
+    ellipse 75% 42% at 50% 100%,
+    rgba(245, 245, 247, 0.075) 0%,
+    rgba(245, 245, 247, 0.02) 48%,
+    transparent 80%
+  );
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .page-transition-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
