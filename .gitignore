@@ -49,3 +49,4 @@ public/video/*-raw.mp4
 public/video/orbital-city-3d-scroll.mp4
 public/video/orbital-city-inside-out-3d.mp4
 public/video/orbital-city-realistic-humans.mp4
+.env*
