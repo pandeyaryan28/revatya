@@ -6,6 +6,7 @@ import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PARTNERS_CONTENT, HOME_CONTENT } from '../data/siteContent';
+import { HeroSection } from '../components/ui/HeroSection';
 import { Handshake } from 'lucide-react';
 
 export const PartnersPage: React.FC = () => {
@@ -14,37 +15,35 @@ export const PartnersPage: React.FC = () => {
       <PageMeta pageKey="partners" />
 
       {/* Hero Section with Bespoke Multidisciplinary Engineering Deck Visual */}
-      <section data-hero-section="true" className="pt-16 sm:pt-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <ScrollReveal variant="fade-up" className="lg:col-span-7">
-              <div className="mb-4 flex items-center gap-3">
-                <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
-                  {PARTNERS_CONTENT.hero.eyebrow}
-                </span>
-              </div>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 dark:text-[#F5F5F7] sm:text-6xl leading-[1.08]">
-                {PARTNERS_CONTENT.hero.headline}
-              </h1>
-              <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-zinc-300">
-                {PARTNERS_CONTENT.hero.body}
-              </p>
-            </ScrollReveal>
+      <HeroSection>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <ScrollReveal variant="fade-up" className="lg:col-span-7">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
+                {PARTNERS_CONTENT.hero.eyebrow}
+              </span>
+            </div>
+            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 dark:text-[#F5F5F7] sm:text-6xl leading-[1.08]">
+              {PARTNERS_CONTENT.hero.headline}
+            </h1>
+            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-zinc-300">
+              {PARTNERS_CONTENT.hero.body}
+            </p>
+          </ScrollReveal>
 
-            <ScrollReveal variant="scale-glass" className="lg:col-span-5">
-              <figure className="relative rounded-2xl overflow-hidden border border-slate-900/10 dark:border-white/[0.1] bg-[#04060A]">
-                <div className="aspect-[16/10] w-full overflow-hidden">
-                  <img
-                    src={HOME_CONTENT.collaboration.image.src}
-                    alt={HOME_CONTENT.collaboration.image.alt}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
-              </figure>
-            </ScrollReveal>
-          </div>
+          <ScrollReveal variant="scale-glass" className="lg:col-span-5">
+            <figure className="relative rounded-2xl overflow-hidden border border-slate-900/10 dark:border-white/[0.1] bg-[#04060A]">
+              <div className="aspect-[16/10] w-full overflow-hidden">
+                <img
+                  src={HOME_CONTENT.collaboration.image.src}
+                  alt={HOME_CONTENT.collaboration.image.alt}
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+            </figure>
+          </ScrollReveal>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Six Collaboration Pathways */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

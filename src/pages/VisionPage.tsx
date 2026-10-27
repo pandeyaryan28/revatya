@@ -5,27 +5,21 @@ import { SectionHeader } from '../components/ui/SectionHeader';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PageMeta } from '../components/seo/PageMeta';
+import { HeroSection } from '../components/ui/HeroSection';
 
 export const VisionPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28 pb-16">
+    <div className="space-y-20 md:space-y-28 pb-16">
       <PageMeta pageKey="vision" />
       {/* HERO */}
-      <ScrollReveal variant="fade-up">
-        <header data-hero-section="true" className="max-w-3xl space-y-6 pt-4">
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
-            {VISION_CONTENT.hero.eyebrow}
-          </p>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7] leading-[1.06]">
-            {VISION_CONTENT.hero.headline}
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-[#A1A1AA] leading-relaxed">
-            {VISION_CONTENT.hero.body}
-          </p>
-        </header>
-      </ScrollReveal>
+      <HeroSection
+        eyebrow={VISION_CONTENT.hero.eyebrow}
+        headline={VISION_CONTENT.hero.headline}
+        body={VISION_CONTENT.hero.body}
+      />
 
-      {/* THE PROBLEM WE ARE EXPLORING WITH BESPOKE VISUAL */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
+        {/* THE PROBLEM WE ARE EXPLORING WITH BESPOKE VISUAL */}
       <ScrollReveal variant="scale-glass">
         <GlassCard padding="lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -113,6 +107,7 @@ export const VisionPage: React.FC = () => {
           </div>
         </GlassCard>
       </ScrollReveal>
+      </div>
     </div>
   );
 };

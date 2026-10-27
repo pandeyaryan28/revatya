@@ -11,89 +11,42 @@ import { GlassCard } from '../components/ui/GlassCard';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { CityPerspectiveViewer } from '../components/journey/CityPerspectiveViewer';
 import { RoadmapHorizonTimeline } from '../components/journey/RoadmapHorizonTimeline';
-import { ScrollReveal, useScrollParallax } from '../components/ui/ScrollReveal';
+import { ScrollReveal } from '../components/ui/ScrollReveal';
+import { HeroSection } from '../components/ui/HeroSection';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PageMeta } from '../components/seo/PageMeta';
 
 export const HomePage: React.FC = () => {
-  const heroParallaxOffset = useScrollParallax(0.08);
-
   return (
     <div className="space-y-24 md:space-y-36 pb-16">
       <PageMeta pageKey="home" />
       {/* SECTION 1: FULL BLEED CINEMATIC HERO (CHAPTER 01: ARRIVAL) */}
-      <section
+      <HeroSection
         id="chapter-arrival"
-        data-hero-section="true"
-        className="relative -mt-28 md:-mt-32 min-h-[92vh] w-full overflow-hidden flex items-end pb-16 md:pb-24 pt-36 md:pt-44 border-b border-slate-900/[0.08] dark:border-white/[0.07]"
-      >
-        {/* Full bleed background video with scroll linked parallax */}
-        <div
-          className="absolute inset-0 z-0 overflow-hidden bg-[#020305]"
-          style={{
-            transform: `translate3d(0, ${heroParallaxOffset}px, 0) scale(1.04)`,
-            willChange: 'transform',
-          }}
-        >
-          <video
-            src={HOME_CONTENT.hero.videoSrc}
-            poster={HOME_CONTENT.hero.imageSrc}
-            autoPlay
-            loop
-            muted
-            playsInline
-            aria-label={HOME_CONTENT.hero.imageAlt}
-            className="w-full h-full object-cover object-center opacity-75 dark:opacity-65"
-          />
-        </div>
-
-        {/* Multi stop optical scrims for legibility in both Light and Dark mode */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#F5F5F7] via-[#F5F5F7]/75 to-[#F5F5F7]/30 dark:from-[#020305] dark:via-[#020305]/72 dark:to-[#020305]/35"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-[#F5F5F7]/90 via-[#F5F5F7]/55 to-transparent dark:from-[#020305]/92 dark:via-[#020305]/60 dark:to-transparent"
-        />
-
-        {/* Foreground architectural content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-3xl space-y-7">
-            <ScrollReveal variant="fade-up" delayMs={40}>
-              <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.22em] text-slate-600 dark:text-[#A1A1AA]">
-                {HOME_CONTENT.hero.eyebrow}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fade-up" delayMs={110}>
-              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-slate-950 dark:text-[#F5F5F7] leading-[1.03]">
-                {HOME_CONTENT.hero.headline}
-              </h1>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fade-up" delayMs={180}>
-              <p className="text-lg sm:text-xl text-slate-700 dark:text-[#A1A1AA] leading-relaxed max-w-2xl">
-                {HOME_CONTENT.hero.body}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fade-up" delayMs={250}>
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <AppleButton to={HOME_CONTENT.hero.primaryCta.href} variant="primary" size="lg" showArrow>
-                  {HOME_CONTENT.hero.primaryCta.label}
-                </AppleButton>
-                <AppleButton to={HOME_CONTENT.hero.secondaryCta.href} variant="secondary" size="lg">
-                  {HOME_CONTENT.hero.secondaryCta.label}
-                </AppleButton>
-                <AppleButton to="/city-atlas" variant="ghost" size="md" icon={<Compass className="w-4 h-4" />}>
-                  Interactive City Atlas
-                </AppleButton>
-              </div>
-            </ScrollReveal>
+        eyebrow={HOME_CONTENT.hero.eyebrow}
+        headline={HOME_CONTENT.hero.headline}
+        body={HOME_CONTENT.hero.body}
+        videoSrc={HOME_CONTENT.hero.videoSrc}
+        posterSrc={HOME_CONTENT.hero.imageSrc}
+        videoAlt={HOME_CONTENT.hero.imageAlt}
+        minHeightClassName="min-h-[92vh] pb-16 md:pb-24 pt-36 md:pt-44"
+        headlineClassName="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.035em] text-slate-950 dark:text-[#F5F5F7] leading-[1.03]"
+        eyebrowClassName="text-xs sm:text-sm font-mono uppercase tracking-[0.22em] text-slate-600 dark:text-[#A1A1AA]"
+        bodyClassName="text-lg sm:text-xl text-slate-700 dark:text-[#A1A1AA] leading-relaxed max-w-2xl"
+        actions={
+          <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            <AppleButton to={HOME_CONTENT.hero.primaryCta.href} variant="primary" size="lg" showArrow>
+              {HOME_CONTENT.hero.primaryCta.label}
+            </AppleButton>
+            <AppleButton to={HOME_CONTENT.hero.secondaryCta.href} variant="secondary" size="lg">
+              {HOME_CONTENT.hero.secondaryCta.label}
+            </AppleButton>
+            <AppleButton to="/city-atlas" variant="ghost" size="md" icon={<Compass className="w-4 h-4" />}>
+              Interactive City Atlas
+            </AppleButton>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* SECTION 2: THESIS (CHAPTER 02: THE THESIS) */}
       <section id="chapter-thesis" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

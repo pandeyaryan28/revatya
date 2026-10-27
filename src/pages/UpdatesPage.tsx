@@ -5,6 +5,7 @@ import { GlassCard } from '../components/ui/GlassCard';
 import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
+import { HeroSection } from '../components/ui/HeroSection';
 import { UPDATES_CONTENT } from '../data/siteContent';
 import { Clock, CheckSquare } from 'lucide-react';
 
@@ -14,23 +15,11 @@ export const UpdatesPage: React.FC = () => {
       <PageMeta pageKey="updates" />
 
       {/* Hero Section */}
-      <section data-hero-section="true" className="pt-16 sm:pt-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal variant="fade-up" className="max-w-4xl">
-            <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
-                {UPDATES_CONTENT.hero.eyebrow}
-              </span>
-            </div>
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 dark:text-[#F5F5F7] sm:text-6xl leading-[1.08]">
-              {UPDATES_CONTENT.hero.headline}
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-zinc-300 max-w-3xl">
-              {UPDATES_CONTENT.hero.body}
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow={UPDATES_CONTENT.hero.eyebrow}
+        headline={UPDATES_CONTENT.hero.headline}
+        body={UPDATES_CONTENT.hero.body}
+      />
 
       {/* Honest Empty State */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

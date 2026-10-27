@@ -5,6 +5,7 @@ import { GlassCard } from '../components/ui/GlassCard';
 import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
+import { HeroSection } from '../components/ui/HeroSection';
 import { INSIGHTS_CONTENT } from '../data/siteContent';
 import { FileText, BookOpen } from 'lucide-react';
 
@@ -14,23 +15,11 @@ export const InsightsPage: React.FC = () => {
       <PageMeta pageKey="insights" />
 
       {/* Hero Section */}
-      <section data-hero-section="true" className="pt-16 sm:pt-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal variant="fade-up" className="max-w-4xl">
-            <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
-                {INSIGHTS_CONTENT.hero.eyebrow}
-              </span>
-            </div>
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 dark:text-[#F5F5F7] sm:text-6xl leading-[1.08]">
-              {INSIGHTS_CONTENT.hero.headline}
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-zinc-300 max-w-3xl">
-              {INSIGHTS_CONTENT.hero.body}
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow={INSIGHTS_CONTENT.hero.eyebrow}
+        headline={INSIGHTS_CONTENT.hero.headline}
+        body={INSIGHTS_CONTENT.hero.body}
+      />
 
       {/* Honest Empty State Card */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

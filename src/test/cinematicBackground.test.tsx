@@ -26,7 +26,7 @@ describe('CinematicBackgroundVideo Component & Hero Exclusion', () => {
     vi.restoreAllMocks();
   });
 
-  it('renders persistent background video with MP4 and WebM sources and poster fallback', () => {
+  it('renders persistent background video with MP4 and WebM sources, poster fallback, and loop autoplay attributes', () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/']}>
         <CinematicBackgroundVideo />
@@ -38,6 +38,10 @@ describe('CinematicBackgroundVideo Component & Hero Exclusion', () => {
     expect(videoEl?.getAttribute('poster')).toBe(
       '/images/background/orbital-city-scroll-poster.webp'
     );
+    expect(videoEl).toHaveAttribute('autoplay');
+    expect(videoEl).toHaveAttribute('loop');
+    expect(videoEl).toHaveProperty('muted', true);
+    expect(videoEl).toHaveAttribute('playsinline');
 
     const sources = container.querySelectorAll('source');
     expect(sources.length).toBe(2);

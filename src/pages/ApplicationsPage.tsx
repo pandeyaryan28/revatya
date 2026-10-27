@@ -6,27 +6,21 @@ import { ConceptFigure } from '../components/ui/ConceptFigure';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PageMeta } from '../components/seo/PageMeta';
+import { HeroSection } from '../components/ui/HeroSection';
 
 export const ApplicationsPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28 pb-16">
+    <div className="space-y-20 md:space-y-28 pb-16">
       <PageMeta pageKey="applications" />
       {/* HERO */}
-      <ScrollReveal variant="fade-up">
-        <header data-hero-section="true" className="max-w-3xl space-y-6 pt-4">
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
-            APPLICATIONS & USE CASES
-          </p>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7] leading-[1.06]">
-            Shared infrastructure for orbital industry and research.
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-[#A1A1AA] leading-relaxed">
-            A persistent orbital city unlocks research, manufacturing, servicing, and computation that isolated single purpose spacecraft cannot sustain economically.
-          </p>
-        </header>
-      </ScrollReveal>
+      <HeroSection
+        eyebrow="APPLICATIONS & USE CASES"
+        headline="Shared infrastructure for orbital industry and research."
+        body="A persistent orbital city unlocks research, manufacturing, servicing, and computation that isolated single purpose spacecraft cannot sustain economically."
+      />
 
-      {/* 6 APPLICATION DOMAINS WITH BESPOKE VISUALS */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
+        {/* 6 APPLICATION DOMAINS WITH BESPOKE VISUALS */}
       <PlanetaryCardSection
         variant="dossier"
         orbitLabel="APPLICATION DOMAINS ORBIT"
@@ -88,6 +82,7 @@ export const ApplicationsPage: React.FC = () => {
           </GlassCard>
         ))}
       </PlanetaryCardSection>
+      </div>
     </div>
   );
 };

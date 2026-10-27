@@ -314,4 +314,38 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
     expect(card1?.getAttribute('data-orbit-slot')).toBe('position-2-orbit');
     expect(card2?.getAttribute('data-orbit-slot')).toBe('position-1-focal');
   });
+
+  it('renders the hero section with background video across other pages in the same manner as the home page', () => {
+    const pages = [
+      { path: '/vision', component: <VisionPage /> },
+      { path: '/city', component: <CityPage /> },
+      { path: '/applications', component: <ApplicationsPage /> },
+      { path: '/roadmap', component: <RoadmapPage /> },
+      { path: '/partners', component: <PartnersPage /> },
+      { path: '/join', component: <JoinPage /> },
+      { path: '/contact', component: <ContactPage /> },
+      { path: '/city-atlas', component: <CityAtlasPage /> },
+    ];
+
+    for (const { path, component } of pages) {
+      const { container, unmount } = render(
+        <MemoryRouter initialEntries={[path]}>
+          {component}
+        </MemoryRouter>
+      );
+
+      const heroSection = container.querySelector('[data-hero-section="true"]');
+      expect(heroSection).toBeInTheDocument();
+
+      const heroVideo = heroSection?.querySelector('video');
+      expect(heroVideo).toBeInTheDocument();
+      expect(heroVideo?.getAttribute('src')).toBe('/video/orbital-city-hero-loop.mp4');
+      expect(heroVideo).toHaveAttribute('autoplay');
+      expect(heroVideo).toHaveAttribute('loop');
+      expect(heroVideo).toHaveProperty('muted', true);
+      expect(heroVideo).toHaveAttribute('playsinline');
+
+      unmount();
+    }
+  });
 });

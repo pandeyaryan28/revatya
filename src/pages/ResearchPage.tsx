@@ -11,6 +11,7 @@ import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal, StaggerGroup } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PageMeta } from '../components/seo/PageMeta';
+import { HeroSection } from '../components/ui/HeroSection';
 
 export const ResearchPage: React.FC = () => {
   const [selectedStatus, setSelectedStatus] = useState<ResearchEpistemicStatus | 'ALL'>('ALL');
@@ -21,24 +22,17 @@ export const ResearchPage: React.FC = () => {
       : RESEARCH_PROGRAMMES.filter((prog) => prog.epistemicStatus === selectedStatus);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28 pb-16">
+    <div className="space-y-20 md:space-y-28 pb-16">
       <PageMeta pageKey="research" />
       {/* HERO */}
-      <ScrollReveal variant="fade-up">
-        <header data-hero-section="true" className="max-w-3xl space-y-6 pt-4">
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
-            RESEARCH & VALIDATION
-          </p>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7] leading-[1.06]">
-            Separating established science from open hypotheses.
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-[#A1A1AA] leading-relaxed">
-            Every technical claim at Revatya is categorized into one of six epistemic statuses so collaborators, engineers, and reviewers can distinguish established orbital literature from internal architectural hypotheses.
-          </p>
-        </header>
-      </ScrollReveal>
+      <HeroSection
+        eyebrow="RESEARCH & VALIDATION"
+        headline="Separating established science from open hypotheses."
+        body="Every technical claim at Revatya is categorized into one of six epistemic statuses so collaborators, engineers, and reviewers can distinguish established orbital literature from internal architectural hypotheses."
+      />
 
-      {/* 6 EPISTEMIC STATUS FRAMEWORK & INTERACTIVE FILTER */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
+        {/* 6 EPISTEMIC STATUS FRAMEWORK & INTERACTIVE FILTER */}
       <section className="space-y-8">
         <ScrollReveal variant="fade-up">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -293,6 +287,7 @@ export const ResearchPage: React.FC = () => {
           </div>
         </GlassCard>
       </ScrollReveal>
+      </div>
     </div>
   );
 };

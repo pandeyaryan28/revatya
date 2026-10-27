@@ -8,6 +8,7 @@ import { CityPerspectiveViewer } from '../components/journey/CityPerspectiveView
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { PlanetaryCardSection } from '../components/ui/PlanetaryCardSection';
 import { PageMeta } from '../components/seo/PageMeta';
+import { HeroSection } from '../components/ui/HeroSection';
 
 const DistrictDossierCard: React.FC<{ district: CityDistrict }> = ({
   district,
@@ -86,20 +87,14 @@ const DistrictDossierCard: React.FC<{ district: CityDistrict }> = ({
 
 export const CityPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28 pb-16">
+    <div className="space-y-20 md:space-y-28 pb-16">
       <PageMeta pageKey="city" />
       {/* HERO */}
-      <ScrollReveal variant="fade-up">
-        <header data-hero-section="true" className="max-w-3xl space-y-6 pt-4">
-          <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
-            THE CITY ARCHITECTURE
-          </p>
-          <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7] leading-[1.06]">
-            {HOME_CONTENT.cityConcept.headline}
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-600 dark:text-[#A1A1AA] leading-relaxed">
-            {HOME_CONTENT.cityConcept.body}
-          </p>
+      <HeroSection
+        eyebrow="THE CITY ARCHITECTURE"
+        headline={HOME_CONTENT.cityConcept.headline}
+        body={HOME_CONTENT.cityConcept.body}
+        actions={
           <div className="flex flex-wrap gap-3 pt-2">
             <AppleButton to="/city-atlas" variant="primary" icon={<Compass className="w-4 h-4" />} showArrow>
               Launch Interactive City Atlas
@@ -108,43 +103,45 @@ export const CityPage: React.FC = () => {
               Explore Applications
             </AppleButton>
           </div>
-        </header>
-      </ScrollReveal>
+        }
+      />
 
-      {/* MULTI PERSPECTIVE ARCHITECTURAL SHOWCASE */}
-      <CityPerspectiveViewer />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 md:space-y-28">
+        {/* MULTI PERSPECTIVE ARCHITECTURAL SHOWCASE */}
+        <CityPerspectiveViewer />
 
-      {/* INTERACTIVE CITY ATLAS */}
-      <ScrollReveal variant="scale-glass">
-        <InteractiveCityAtlas />
-      </ScrollReveal>
-
-      {/* 8 DISTRICTS DEEP DIVE */}
-      <section className="space-y-12">
-        <ScrollReveal variant="fade-up">
-          <div className="max-w-3xl space-y-3">
-            <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
-              EIGHT FUNCTIONAL DISTRICTS
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7]">
-              District by district technical breakdown.
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 dark:text-[#A1A1AA]">
-              Each district in the Revatya reference architecture serves a specialized role while sharing power, thermal loops, logistics corridors, and life support utilities.
-            </p>
-          </div>
+        {/* INTERACTIVE CITY ATLAS */}
+        <ScrollReveal variant="scale-glass">
+          <InteractiveCityAtlas />
         </ScrollReveal>
 
-        <PlanetaryCardSection
-          variant="dossier"
-          orbitLabel="EIGHT FUNCTIONAL DISTRICTS ORBIT"
-          itemIds={CITY_DISTRICTS.map((d) => d.id)}
-        >
-          {CITY_DISTRICTS.map((district) => (
-            <DistrictDossierCard key={district.id} district={district} />
-          ))}
-        </PlanetaryCardSection>
-      </section>
+        {/* 8 DISTRICTS DEEP DIVE */}
+        <section className="space-y-12">
+          <ScrollReveal variant="fade-up">
+            <div className="max-w-3xl space-y-3">
+              <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-slate-500 dark:text-[#A1A1AA]">
+                EIGHT FUNCTIONAL DISTRICTS
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-slate-950 dark:text-[#F5F5F7]">
+                District by district technical breakdown.
+              </h2>
+              <p className="text-base sm:text-lg text-slate-600 dark:text-[#A1A1AA]">
+                Each district in the Revatya reference architecture serves a specialized role while sharing power, thermal loops, logistics corridors, and life support utilities.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <PlanetaryCardSection
+            variant="dossier"
+            orbitLabel="EIGHT FUNCTIONAL DISTRICTS ORBIT"
+            itemIds={CITY_DISTRICTS.map((d) => d.id)}
+          >
+            {CITY_DISTRICTS.map((district) => (
+              <DistrictDossierCard key={district.id} district={district} />
+            ))}
+          </PlanetaryCardSection>
+        </section>
+      </div>
     </div>
   );
 };

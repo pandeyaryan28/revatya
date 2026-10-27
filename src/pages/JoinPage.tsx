@@ -3,6 +3,7 @@ import { PageMeta } from '../components/seo/PageMeta';
 import { GlassCard } from '../components/ui/GlassCard';
 import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
+import { HeroSection } from '../components/ui/HeroSection';
 import { JOIN_CONTENT } from '../data/siteContent';
 import { submitJoinInterest, SubmissionResult } from '../lib/submissions';
 import { CheckCircle2, AlertCircle, UserPlus, Sparkles } from 'lucide-react';
@@ -72,23 +73,11 @@ export const JoinPage: React.FC = () => {
       <PageMeta pageKey="join" />
 
       {/* Hero Section */}
-      <section data-hero-section="true" className="pt-16 sm:pt-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ScrollReveal variant="fade-up" className="max-w-4xl">
-            <div className="mb-4 flex items-center gap-3">
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
-                {JOIN_CONTENT.hero.eyebrow}
-              </span>
-            </div>
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 dark:text-[#F5F5F7] sm:text-6xl leading-[1.08]">
-              {JOIN_CONTENT.hero.headline}
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 dark:text-zinc-300 max-w-3xl">
-              {JOIN_CONTENT.hero.body}
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow={JOIN_CONTENT.hero.eyebrow}
+        headline={JOIN_CONTENT.hero.headline}
+        body={JOIN_CONTENT.hero.body}
+      />
 
       {/* Main Content Grid */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
