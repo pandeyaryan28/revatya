@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BRAND_CONTENT } from '../../data/siteContent';
+import { Linkedin } from 'lucide-react';
+import { BRAND_CONTENT, COMPANY_SOCIAL_LINKS, COMPANY_CONTACT_INFO } from '../../data/siteContent';
 import { RevatyaLogo } from '../ui/RevatyaLogo';
+import { XIcon } from '../ui/SocialIcons';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -23,6 +25,30 @@ export const Footer: React.FC = () => {
                 </span>
               </div>
             </Link>
+
+            {/* Social & Company Channels */}
+            <div className="flex items-center gap-2.5 pt-1">
+              <a
+                href={COMPANY_SOCIAL_LINKS.x.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Revatya on X (@revatyahq)"
+                title="Revatya on X"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl border border-slate-900/10 dark:border-white/10 bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/8 dark:hover:bg-white/[0.08] active:scale-[0.97] transition-all"
+              >
+                <XIcon className="w-4 h-4 fill-current" />
+              </a>
+              <a
+                href={COMPANY_SOCIAL_LINKS.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Revatya on LinkedIn (Revatya Genesis)"
+                title="Revatya on LinkedIn"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-xl border border-slate-900/10 dark:border-white/10 bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/8 dark:hover:bg-white/[0.08] active:scale-[0.97] transition-all"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           {/* Column 1: Architecture & Systems */}
@@ -74,6 +100,14 @@ export const Footer: React.FC = () => {
                 <Link to="/contact" className="hover:text-slate-950 dark:hover:text-[#F5F5F7] transition-colors">
                   Contact Revatya
                 </Link>
+              </li>
+              <li>
+                <a
+                  href={COMPANY_CONTACT_INFO.mailto}
+                  className="hover:text-slate-950 dark:hover:text-[#F5F5F7] transition-colors"
+                >
+                  {COMPANY_CONTACT_INFO.email}
+                </a>
               </li>
               <li>
                 <Link to="/privacy" className="hover:text-slate-950 dark:hover:text-[#F5F5F7] transition-colors">

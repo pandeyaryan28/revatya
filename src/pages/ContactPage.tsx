@@ -5,9 +5,10 @@ import { GlassCard } from '../components/ui/GlassCard';
 import { AppleButton } from '../components/ui/AppleButton';
 import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { HeroSection } from '../components/ui/HeroSection';
-import { CONTACT_CONTENT } from '../data/siteContent';
+import { CONTACT_CONTENT, COMPANY_CONTACT_INFO, COMPANY_SOCIAL_LINKS } from '../data/siteContent';
 import { submitContactInquiry, SubmissionResult } from '../lib/submissions';
-import { CheckCircle2, AlertCircle, MessageSquare, Handshake } from 'lucide-react';
+import { CheckCircle2, AlertCircle, MessageSquare, Handshake, Mail, Copy, Check, Linkedin } from 'lucide-react';
+import { XIcon } from '../components/ui/SocialIcons';
 
 export const ContactPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -36,6 +37,19 @@ export const ContactPage: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(COMPANY_CONTACT_INFO.email);
+      }
+    } catch {
+      // Ignore clipboard write errors in restricted environments
+    }
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
 
   useEffect(() => {
     setCategory(resolveInitialCategory());
@@ -98,6 +112,81 @@ export const ContactPage: React.FC = () => {
         }
       />
 
+      {/* Direct Communication Channels: Email & Company Socials */}
+      <section className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+        <ScrollReveal variant="fade-up" delayMs={60}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Direct Email Card */}
+            <div className="group p-5 rounded-3xl border border-slate-900/10 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.02] backdrop-blur-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] flex items-center justify-between gap-3">
+              <a
+                href={COMPANY_CONTACT_INFO.mailto}
+                className="flex items-center gap-3.5 min-w-0 flex-1 group/link focus-visible:outline-none"
+                aria-label={`Send direct email to ${COMPANY_CONTACT_INFO.email}`}
+              >
+                <div className="w-11 h-11 rounded-2xl bg-slate-900/5 dark:bg-white/[0.06] border border-slate-900/10 dark:border-white/10 flex items-center justify-center text-slate-900 dark:text-white shrink-0 group-hover/link:scale-105 transition-transform">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="min-w-0 pr-1">
+                  <div className="text-xs font-mono-tech uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
+                    Direct Email
+                  </div>
+                  <div className="text-sm sm:text-base font-semibold text-slate-950 dark:text-[#F5F5F7] truncate mt-0.5 group-hover/link:text-sky-600 dark:group-hover/link:text-sky-400 transition-colors">
+                    {COMPANY_CONTACT_INFO.email}
+                  </div>
+                </div>
+              </a>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email address"
+                title={copiedEmail ? 'Copied to clipboard' : 'Copy email address'}
+                className="p-2.5 rounded-xl border border-slate-900/10 dark:border-white/10 bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-600 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/8 dark:hover:bg-white/[0.08] active:scale-[0.95] transition-all cursor-pointer shrink-0"
+              >
+                {copiedEmail ? (
+                  <Check className="w-4 h-4 text-emerald-500" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+
+            {/* Official Company Channels Card */}
+            <div className="p-5 rounded-3xl border border-slate-900/10 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.02] backdrop-blur-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] flex items-center justify-between gap-3">
+              <div>
+                <div className="text-xs font-mono-tech uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
+                  Company Links
+                </div>
+                <div className="text-sm sm:text-base font-semibold text-slate-950 dark:text-[#F5F5F7] mt-0.5">
+                  Official Channels
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <a
+                  href={COMPANY_SOCIAL_LINKS.x.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Revatya on X (@revatyahq)"
+                  title="X (@revatyahq)"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-2xl border border-slate-900/10 dark:border-white/10 bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/8 dark:hover:bg-white/[0.08] active:scale-[0.95] transition-all"
+                >
+                  <XIcon className="w-4 h-4 fill-current" />
+                </a>
+                <a
+                  href={COMPANY_SOCIAL_LINKS.linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Revatya on LinkedIn (Revatya Genesis)"
+                  title="LinkedIn (Revatya Genesis)"
+                  className="inline-flex items-center justify-center w-10 h-10 rounded-2xl border border-slate-900/10 dark:border-white/10 bg-slate-900/[0.03] dark:bg-white/[0.04] text-slate-700 dark:text-zinc-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-900/8 dark:hover:bg-white/[0.08] active:scale-[0.95] transition-all"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Simplified Contact Form */}
       <section className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="fade-up" delayMs={90}>
@@ -141,7 +230,13 @@ export const ContactPage: React.FC = () => {
                         {isFromPartners ? 'Partnership Enquiry' : 'Send an enquiry'}
                       </h2>
                       <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
-                        Direct routing to Revatya team operations.
+                        Direct routing to Revatya team operations. For general correspondence, you can also write to{' '}
+                        <a
+                          href={COMPANY_CONTACT_INFO.mailto}
+                          className="text-slate-900 dark:text-[#F5F5F7] underline underline-offset-4 decoration-slate-300 dark:decoration-zinc-600 hover:decoration-slate-900 dark:hover:decoration-white transition-colors"
+                        >
+                          {COMPANY_CONTACT_INFO.email}
+                        </a>.
                       </p>
                     </div>
                     {isFromPartners ? (

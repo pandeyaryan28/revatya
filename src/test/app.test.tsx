@@ -363,4 +363,63 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
     expect(appLinks[0].getAttribute('href')).toBe('/applications#microgravity-manufacturing');
     expect(appLinks[1].getAttribute('href')).toBe('/applications#orbital-port-logistics');
   });
+
+  it('renders official company links (X and LinkedIn) and direct email on the Contact Page and in the Footer', async () => {
+    // 1. Check Contact Page
+    const { container: contactContainer, unmount: unmountContact } = render(
+      <MemoryRouter initialEntries={['/contact']}>
+        <ContactPage />
+      </MemoryRouter>
+    );
+
+    // Verify hello@revatya.com mailto links and text occurrences
+    const mailtoLinks = contactContainer.querySelectorAll('a[href="mailto:hello@revatya.com"]');
+    expect(mailtoLinks.length).toBeGreaterThanOrEqual(2);
+    expect(screen.getAllByText('hello@revatya.com').length).toBeGreaterThanOrEqual(2);
+
+    // Verify X company link on Contact Page
+    const contactXLink = contactContainer.querySelector('a[href="https://x.com/revatyahq"]');
+    expect(contactXLink).toBeInTheDocument();
+    expect(contactXLink).toHaveAttribute('target', '_blank');
+    expect(contactXLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    // Verify LinkedIn company link on Contact Page
+    const contactLinkedInLink = contactContainer.querySelector(
+      'a[href="https://www.linkedin.com/company/revatya-genesis/"]'
+    );
+    expect(contactLinkedInLink).toBeInTheDocument();
+    expect(contactLinkedInLink).toHaveAttribute('target', '_blank');
+    expect(contactLinkedInLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    // Test copy email button
+    const copyBtn = screen.getByRole('button', { name: /Copy email address/i });
+    expect(copyBtn).toBeInTheDocument();
+    fireEvent.click(copyBtn);
+    expect(await screen.findByTitle(/Copied to clipboard/i)).toBeInTheDocument();
+
+    unmountContact();
+
+    // 2. Check Footer
+    const { container: footerContainer } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <Footer />
+      </MemoryRouter>
+    );
+
+    const footerXLink = footerContainer.querySelector('a[href="https://x.com/revatyahq"]');
+    expect(footerXLink).toBeInTheDocument();
+    expect(footerXLink).toHaveAttribute('target', '_blank');
+    expect(footerXLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    const footerLinkedInLink = footerContainer.querySelector(
+      'a[href="https://www.linkedin.com/company/revatya-genesis/"]'
+    );
+    expect(footerLinkedInLink).toBeInTheDocument();
+    expect(footerLinkedInLink).toHaveAttribute('target', '_blank');
+    expect(footerLinkedInLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    const footerEmailLink = footerContainer.querySelector('a[href="mailto:hello@revatya.com"]');
+    expect(footerEmailLink).toBeInTheDocument();
+    expect(footerEmailLink?.textContent).toContain('hello@revatya.com');
+  });
 });

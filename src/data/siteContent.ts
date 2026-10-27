@@ -200,8 +200,29 @@ export const SEO_METADATA: Record<string, PageSeoMeta> = {
   },
 };
 
+export const COMPANY_SOCIAL_LINKS = {
+  x: {
+    label: 'X (formerly Twitter)',
+    handle: '@revatyahq',
+    url: 'https://x.com/revatyahq',
+  },
+  linkedin: {
+    label: 'LinkedIn',
+    name: 'Revatya Genesis',
+    url: 'https://www.linkedin.com/company/revatya-genesis/',
+  },
+} as const;
+
+export const COMPANY_CONTACT_INFO = {
+  email: 'hello@revatya.com',
+  mailto: 'mailto:hello@revatya.com',
+  social: COMPANY_SOCIAL_LINKS,
+} as const;
+
 export const BRAND_CONTENT = {
   name: 'Revatya',
+  contactEmail: COMPANY_CONTACT_INFO.email,
+  social: COMPANY_SOCIAL_LINKS,
   oneLineDescription:
     'Revatya is developing a vision and long term pathway toward a space city: an interconnected orbital environment for human habitation, research, industry, and transportation.',
   primaryPositioning: "A city beyond Earth. Infrastructure for humanity's next frontier.",
@@ -1709,6 +1730,9 @@ export const CONTACT_CONTENT = {
     headline: 'Start a conversation.',
     body: "Have a question, a research idea, a technical capability, or a potential partnership in mind? Tell us what you are working on and how it might connect with Revatya's vision.",
   },
+  directEmail: 'hello@revatya.com',
+  directEmailMailto: 'mailto:hello@revatya.com',
+  socialLinks: COMPANY_SOCIAL_LINKS,
   enquiryTypes: [
     'Technical or research collaboration',
     'Technology or manufacturing partnership',
