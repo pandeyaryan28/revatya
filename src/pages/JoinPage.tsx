@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { PageMeta } from '../components/seo/PageMeta';
 import { GlassCard } from '../components/ui/GlassCard';
 import { AppleButton } from '../components/ui/AppleButton';
@@ -6,9 +7,13 @@ import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { HeroSection } from '../components/ui/HeroSection';
 import { JOIN_CONTENT } from '../data/siteContent';
 import { submitJoinInterest, SubmissionResult } from '../lib/submissions';
-import { CheckCircle2, AlertCircle, UserPlus, Sparkles } from 'lucide-react';
+import { CheckCircle2, AlertCircle, UserPlus, Sparkles, Handshake } from 'lucide-react';
 
 export const JoinPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const sourceParam = searchParams.get('source');
+  const isFromPartners = sourceParam === 'partners';
+
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
@@ -141,9 +146,17 @@ export const JoinPage: React.FC = () => {
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   <div className="flex items-center justify-between border-b border-slate-200/70 dark:border-white/[0.08] pb-4">
                     <div>
-                      <h2 className="font-display text-2xl font-semibold text-slate-900 dark:text-[#F5F5F7]">
-                        {JOIN_CONTENT.ctaLabel}
-                      </h2>
+                      <div className="flex items-center gap-2">
+                        <h2 className="font-display text-2xl font-semibold text-slate-900 dark:text-[#F5F5F7]">
+                          {JOIN_CONTENT.ctaLabel}
+                        </h2>
+                        {isFromPartners && (
+                          <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 font-mono text-[11px] text-sky-600 dark:text-sky-400">
+                            <Handshake className="h-3 w-3" />
+                            Pathway 06
+                          </span>
+                        )}
+                      </div>
                       <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
                         Share your background and the specific orbital or habitat problem you want to examine.
                       </p>

@@ -1,5 +1,6 @@
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getFirestoreClient } from './firebase';
+import { sendGuildOrbitLead } from './guildOrbit';
 
 export interface ContactInquiryInput {
   fullName: string;
@@ -9,8 +10,10 @@ export interface ContactInquiryInput {
   category: string;
   message: string;
   location?: string;
-  consent: boolean;
+  consent?: boolean;
   sourcePage?: string;
+  originatingPage?: string;
+  pathwayId?: string;
 }
 
 export interface JoinInterestInput {
@@ -18,11 +21,11 @@ export interface JoinInterestInput {
   email: string;
   location?: string;
   discipline: string;
-  experienceSummary: string;
+  experienceSummary?: string;
   portfolioUrl?: string;
   interestStatement: string;
-  availability: string;
-  consent: boolean;
+  availability?: string;
+  consent?: boolean;
 }
 
 export interface SubmissionResult {
@@ -30,6 +33,9 @@ export interface SubmissionResult {
   referenceId: string;
   storageMode: 'firestore' | 'local-ledger';
   submittedAtIso: string;
+  guildOrbitSuccess?: boolean;
+  guildOrbitMessageId?: string;
+  guildOrbitTaskId?: string;
 }
 
 const LOCAL_CONTACT_KEY = 'revatya_contact_inquiries_v1';
@@ -61,13 +67,18 @@ export async function submitContactInquiry(
     email: input.email.trim(),
     category: input.category,
     message: input.message.trim(),
-    consent: Boolean(input.consent),
+    consent: input.consent ?? true,
   };
 
   if (input.organisation?.trim()) cleanPayload.organisation = input.organisation.trim();
   if (input.role?.trim()) cleanPayload.role = input.role.trim();
   if (input.location?.trim()) cleanPayload.location = input.location.trim();
   if (input.sourcePage?.trim()) cleanPayload.sourcePage = input.sourcePage.trim();
+  if (input.originatingPage?.trim()) cleanPayload.originatingPage = input.originatingPage.trim();
+  if (input.pathwayId?.trim()) cleanPayload.pathwayId = input.pathwayId.trim();
+
+  let referenceId = '';
+  let storageMode: 'firestore' | 'local-ledger' = 'local-ledger';
 
   const db = getFirestoreClient();
   if (db && import.meta.env.VITE_FIREBASE_API_KEY) {
@@ -76,27 +87,61 @@ export async function submitContactInquiry(
         ...cleanPayload,
         createdAt: serverTimestamp(),
       });
-      return {
-        ok: true,
-        referenceId: docRef.id,
-        storageMode: 'firestore',
-        submittedAtIso,
-      };
+      referenceId = docRef.id;
+      storageMode = 'firestore';
     } catch {
       // Fall through to resilient local ledger if network/rules block unconfigured client
     }
   }
 
-  const referenceId = saveToLocalLedger(LOCAL_CONTACT_KEY, {
-    ...cleanPayload,
-    createdAt: submittedAtIso,
+  if (!referenceId) {
+    referenceId = saveToLocalLedger(LOCAL_CONTACT_KEY, {
+      ...cleanPayload,
+      createdAt: submittedAtIso,
+    });
+    storageMode = 'local-ledger';
+  }
+
+  // Forward inquiry to Guild Orbit channel and inbox
+  const isPartners =
+    input.originatingPage?.toLowerCase().includes('partner') ||
+    input.category.toLowerCase().includes('partnership') ||
+    input.category.toLowerCase().includes('collaboration');
+
+  const subject = isPartners
+    ? `Partnership Inquiry: ${input.category}`
+    : `Inquiry: ${input.category}`;
+
+  const metadata: Record<string, unknown> = {
+    source: 'Revatya Website',
+    originatingPage: input.originatingPage || (isPartners ? 'Partners Page' : 'Contact Page'),
+    category: input.category,
+    referenceId,
+  };
+
+  if (input.organisation?.trim()) metadata.organisation = input.organisation.trim();
+  if (input.role?.trim()) metadata.role = input.role.trim();
+  if (input.location?.trim()) metadata.location = input.location.trim();
+  if (input.pathwayId?.trim()) metadata.pathway = input.pathwayId.trim();
+  if (input.sourcePage?.trim()) metadata.linkOrReference = input.sourcePage.trim();
+
+  const guildRes = await sendGuildOrbitLead({
+    name: input.fullName.trim(),
+    email: input.email.trim(),
+    subject,
+    message: input.message.trim(),
+    createTask: true,
+    metadata,
   });
 
   return {
     ok: true,
     referenceId,
-    storageMode: 'local-ledger',
+    storageMode,
     submittedAtIso,
+    guildOrbitSuccess: guildRes.success,
+    guildOrbitMessageId: guildRes.messageId,
+    guildOrbitTaskId: guildRes.taskId,
   };
 }
 
@@ -109,14 +154,17 @@ export async function submitJoinInterest(
     fullName: input.fullName.trim(),
     email: input.email.trim(),
     discipline: input.discipline,
-    experienceSummary: input.experienceSummary.trim(),
     interestStatement: input.interestStatement.trim(),
-    availability: input.availability,
-    consent: Boolean(input.consent),
+    consent: input.consent ?? true,
   };
 
+  if (input.experienceSummary?.trim()) cleanPayload.experienceSummary = input.experienceSummary.trim();
+  if (input.availability?.trim()) cleanPayload.availability = input.availability.trim();
   if (input.location?.trim()) cleanPayload.location = input.location.trim();
   if (input.portfolioUrl?.trim()) cleanPayload.portfolioUrl = input.portfolioUrl.trim();
+
+  let referenceId = '';
+  let storageMode: 'firestore' | 'local-ledger' = 'local-ledger';
 
   const db = getFirestoreClient();
   if (db && import.meta.env.VITE_FIREBASE_API_KEY) {
@@ -125,26 +173,56 @@ export async function submitJoinInterest(
         ...cleanPayload,
         createdAt: serverTimestamp(),
       });
-      return {
-        ok: true,
-        referenceId: docRef.id,
-        storageMode: 'firestore',
-        submittedAtIso,
-      };
+      referenceId = docRef.id;
+      storageMode = 'firestore';
     } catch {
       // Fall through to resilient local ledger
     }
   }
 
-  const referenceId = saveToLocalLedger(LOCAL_JOIN_KEY, {
-    ...cleanPayload,
-    createdAt: submittedAtIso,
+  if (!referenceId) {
+    referenceId = saveToLocalLedger(LOCAL_JOIN_KEY, {
+      ...cleanPayload,
+      createdAt: submittedAtIso,
+    });
+    storageMode = 'local-ledger';
+  }
+
+  // Forward contributor interest to Guild Orbit channel and inbox
+  const fullMessage = [
+    input.interestStatement.trim(),
+    input.experienceSummary?.trim() ? `\n\n**Experience:**\n${input.experienceSummary.trim()}` : '',
+  ]
+    .filter(Boolean)
+    .join('');
+
+  const metadata: Record<string, unknown> = {
+    source: 'Revatya Website',
+    originatingPage: 'Join / Contributor Page',
+    discipline: input.discipline,
+    referenceId,
+  };
+
+  if (input.availability?.trim()) metadata.availability = input.availability.trim();
+  if (input.location?.trim()) metadata.location = input.location.trim();
+  if (input.portfolioUrl?.trim()) metadata.portfolioUrl = input.portfolioUrl.trim();
+
+  const guildRes = await sendGuildOrbitLead({
+    name: input.fullName.trim(),
+    email: input.email.trim(),
+    subject: `Contributor Interest: ${input.discipline}`,
+    message: fullMessage,
+    createTask: true,
+    metadata,
   });
 
   return {
     ok: true,
     referenceId,
-    storageMode: 'local-ledger',
+    storageMode,
     submittedAtIso,
+    guildOrbitSuccess: guildRes.success,
+    guildOrbitMessageId: guildRes.messageId,
+    guildOrbitTaskId: guildRes.taskId,
   };
 }
