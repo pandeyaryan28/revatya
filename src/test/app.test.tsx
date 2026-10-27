@@ -348,4 +348,24 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
       unmount();
     }
   });
+
+  it('renders district and application cards on the home page as clickable links to their respective destination hashes', () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <HomePage />
+      </MemoryRouter>
+    );
+
+    // Verify all 8 district cards link to /city#<district-id>
+    const districtLinks = container.querySelectorAll('a[href^="/city#"]');
+    expect(districtLinks.length).toBe(8);
+    expect(districtLinks[0].getAttribute('href')).toBe('/city#habitation');
+    expect(districtLinks[1].getAttribute('href')).toBe('/city#orbital-port');
+
+    // Verify all 6 application cards link to /applications#<app-id>
+    const appLinks = container.querySelectorAll('a[href^="/applications#"]');
+    expect(appLinks.length).toBe(6);
+    expect(appLinks[0].getAttribute('href')).toBe('/applications#microgravity-manufacturing');
+    expect(appLinks[1].getAttribute('href')).toBe('/applications#orbital-port-logistics');
+  });
 });

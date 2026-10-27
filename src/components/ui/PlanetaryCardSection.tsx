@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export interface PlanetaryCardSectionProps {
   children: React.ReactNode;
@@ -86,6 +87,8 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
   const uTargetRef = useRef<number>(0);
   const uCurrentRef = useRef<number>(0);
   const rafRef = useRef<number>(0);
+  const isProgrammaticScrollRef = useRef<boolean>(false);
+  const scrollUnlockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [orbitProgress, setOrbitProgress] = useState<number>(0);
   const [isReducedMotion, setIsReducedMotion] = useState<boolean>(() => {
@@ -94,6 +97,8 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
     }
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   });
+
+  const location = useLocation();
 
   // Reset orbit if card count changes (for example when filtering Research Programmes)
   useEffect(() => {
@@ -131,15 +136,15 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
   const jumpToCard = useCallback(
     (targetIndex: number) => {
       const clamped = Math.max(0, Math.min(count - 1, targetIndex));
+      isProgrammaticScrollRef.current = true;
       uTargetRef.current = clamped;
+      uCurrentRef.current = clamped;
+      setOrbitProgress(clamped);
 
       const rect = stageRef.current?.getBoundingClientRect();
       const isJsdom = !rect || rect.height === 0;
 
-      if (isReducedMotion || isJsdom || typeof window === 'undefined' || typeof window.requestAnimationFrame !== 'function') {
-        uCurrentRef.current = clamped;
-        setOrbitProgress(clamped);
-      } else {
+      if (!isReducedMotion && !isJsdom && typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') {
         startSpringLoop();
       }
 
@@ -161,6 +166,13 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
           }
         }
       }
+
+      if (scrollUnlockTimerRef.current) {
+        clearTimeout(scrollUnlockTimerRef.current);
+      }
+      scrollUnlockTimerRef.current = setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+      }, 700);
     },
     [count, isReducedMotion, startSpringLoop]
   );
@@ -175,6 +187,8 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
     if (count <= 1) return;
 
     const computeScrollTarget = () => {
+      if (isProgrammaticScrollRef.current) return;
+
       const trackEl = trackRef.current;
       const stageEl = stageRef.current;
       if (!trackEl || !stageEl) return;
@@ -239,15 +253,18 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
         window.cancelAnimationFrame(rafRef.current);
         rafRef.current = 0;
       }
+      if (scrollUnlockTimerRef.current) {
+        clearTimeout(scrollUnlockTimerRef.current);
+      }
     };
   }, [count, startSpringLoop]);
 
-  // Support URL hash deep-linking (e.g., /city#habitation or /applications#orbital-compute)
+  // Support URL hash deep-linking (e.g., /city#habitation or /applications#microgravity-manufacturing)
   useEffect(() => {
     if (typeof window === 'undefined' || !itemIds || itemIds.length === 0) return;
 
     const checkHash = () => {
-      const rawHash = window.location.hash.replace(/^#/, '');
+      const rawHash = (location.hash || window.location.hash || '').replace(/^#/, '');
       if (!rawHash) return;
       const idx = itemIds.indexOf(rawHash);
       if (idx !== -1) {
@@ -256,9 +273,13 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
     };
 
     checkHash();
+    const timer = setTimeout(checkHash, 80);
     window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
-  }, [itemIds, jumpToCard]);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', checkHash);
+    };
+  }, [location.hash, location.pathname, itemIds, jumpToCard]);
 
   // Planetary arc rotation angle for SVG orbital ring indicator
   const horizonRotationDeg = count > 1 ? (orbitProgress / (count - 1)) * 36 - 18 : 0;
@@ -318,7 +339,8 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
               const isIncomingLimb = shift <= -0.45 && shift > -1.55;
               const isClickableSideCard = !isFocal && absShift < 1.65;
 
-              const zIndex = Math.max(1, Math.round(40 - absShift * 12));
+              // Ensure focal card has highest priority in zIndex and 3D stacking
+              const zIndex = isFocal ? 50 : Math.max(1, Math.round(35 - absShift * 12));
 
               const cardStyle: React.CSSProperties = isReducedMotion
                 ? {
@@ -329,7 +351,7 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
                   }
                 : {
                     opacity: kf.opacity,
-                    transform: `translate3d(${kf.xPct}%, ${kf.yPx}px, ${kf.zPx}px) rotateY(${kf.rotY}deg) rotateZ(${kf.rotZ}deg) scale(${kf.scale})`,
+                    transform: `translate3d(${kf.xPct}%, ${kf.yPx}px, ${isFocal ? 20 : kf.zPx}px) rotateY(${kf.rotY}deg) rotateZ(${kf.rotZ}deg) scale(${kf.scale})`,
                     filter: kf.blur > 0.15 ? `blur(${kf.blur.toFixed(2)}px)` : 'none',
                     zIndex,
                     pointerEvents: kf.opacity > 0.15 ? 'auto' : 'none',
@@ -354,6 +376,12 @@ export const PlanetaryCardSection: React.FC<PlanetaryCardSectionProps> = ({
                   }
                   data-orbit-index={idx}
                   onClickCapture={(e) => {
+                    const target = e.target as HTMLElement | null;
+                    const linkOrButton = target?.closest('a, button, [role="button"]');
+                    if (linkOrButton) {
+                      // Allow direct links and action buttons on cards to execute naturally
+                      return;
+                    }
                     if (isClickableSideCard) {
                       e.preventDefault();
                       e.stopPropagation();

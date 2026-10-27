@@ -89,7 +89,7 @@ export const PartnersPage: React.FC = () => {
 
               <div className="mt-8 pt-4 border-t border-slate-200/70 dark:border-white/[0.08]">
                 <AppleButton
-                  href={
+                  to={
                     pathway.id === 'individual-contributors'
                       ? '/join'
                       : `/contact?category=${encodeURIComponent(pathway.enquiryCategoryValue)}`

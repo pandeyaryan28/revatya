@@ -168,36 +168,34 @@ export const HomePage: React.FC = () => {
           itemIds={APPLICATIONS_LIST.map((app) => app.id)}
         >
           {APPLICATIONS_LIST.map((app) => (
-            <GlassCard key={app.id} interactive className="flex flex-col justify-between h-full">
-              <div className="space-y-5">
-                <div className="relative rounded-2xl overflow-hidden aspect-[16/9] bg-[#04060A] border border-slate-900/10 dark:border-white/[0.08]">
-                  <img
-                    src={app.image.src}
-                    alt={app.image.alt}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center"
-                  />
+            <Link key={app.id} to={`/applications#${app.id}`} className="group block h-full">
+              <GlassCard padding="sm" interactive className="h-full flex flex-col justify-between overflow-hidden">
+                <div className="space-y-4">
+                  <div className="relative rounded-xl overflow-hidden aspect-[16/10] bg-[#04060A] border border-slate-900/10 dark:border-white/[0.08]">
+                    <img
+                      src={app.image.src}
+                      alt={app.image.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  <div className="space-y-2 px-1">
+                    <h3 className="text-lg font-semibold text-slate-950 dark:text-[#F5F5F7] group-hover:opacity-80 transition-opacity">
+                      {app.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-600 dark:text-[#A1A1AA] line-clamp-3 leading-relaxed">
+                      {app.shortCardCopy}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="space-y-2.5">
-                  <h3 className="text-xl font-semibold text-slate-950 dark:text-[#F5F5F7] tracking-tight">
-                    {app.title}
-                  </h3>
-                  <p className="text-base text-slate-600 dark:text-[#A1A1AA] leading-relaxed">
-                    {app.shortCardCopy}
-                  </p>
+                <div className="pt-4 mt-4 px-1 border-t border-slate-900/[0.06] dark:border-white/[0.06] flex items-center justify-between text-xs font-mono uppercase tracking-wider text-slate-600 dark:text-zinc-400">
+                  <span>{app.cardLinkLabel}</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
-              </div>
-              <div className="pt-5 mt-6 border-t border-slate-900/[0.06] dark:border-white/[0.06]">
-                <Link
-                  to={`/applications#${app.id}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-[#F5F5F7] hover:opacity-75 transition-opacity"
-                >
-                  {app.cardLinkLabel}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </GlassCard>
+              </GlassCard>
+            </Link>
           ))}
         </PlanetaryCardSection>
       </section>

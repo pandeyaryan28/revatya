@@ -42,11 +42,11 @@ export const InsightsPage: React.FC = () => {
                 {INSIGHTS_CONTENT.emptyStateSubtext}
               </p>
               <div className="pt-4 flex flex-wrap justify-center gap-4">
-                <AppleButton href="/research" variant="primary" size="md" withArrow>
+                <AppleButton to="/research" variant="primary" size="md" withArrow>
                   Explore Active Research Programmes
                 </AppleButton>
                 <AppleButton
-                  href={`/contact?category=${encodeURIComponent('Technical or research collaboration')}`}
+                  to={`/contact?category=${encodeURIComponent('Technical or research collaboration')}`}
                   variant="secondary"
                   size="md"
                 >

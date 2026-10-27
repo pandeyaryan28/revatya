@@ -36,7 +36,11 @@ export const AppLayout: React.FC = () => {
       const id = hash.replace('#', '');
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+        // If element is managed within a PlanetaryCardSection, the orbit handles focal positioning and track alignment
+        const inPlanetary = el.closest('[data-planetary-orbit="true"]');
+        if (!inPlanetary) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
         return;
       }
     }

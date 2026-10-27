@@ -278,10 +278,10 @@ export const ResearchPage: React.FC = () => {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <AppleButton href="/partners" variant="primary" withArrow>
+            <AppleButton to="/partners" variant="primary" withArrow>
               Partners & Collaborators
             </AppleButton>
-            <AppleButton href="/join" variant="secondary">
+            <AppleButton to="/join" variant="secondary">
               Join / Contribute
             </AppleButton>
           </div>

@@ -42,10 +42,10 @@ export const UpdatesPage: React.FC = () => {
                 {UPDATES_CONTENT.emptyStateExplanation}
               </p>
               <div className="pt-4 flex flex-wrap justify-center gap-4">
-                <AppleButton href="/roadmap" variant="primary" size="md" withArrow>
+                <AppleButton to="/roadmap" variant="primary" size="md" withArrow>
                   Review Stage 01 to 05 Roadmap
                 </AppleButton>
-                <AppleButton href="/contact" variant="secondary" size="md">
+                <AppleButton to="/contact" variant="secondary" size="md">
                   Contact the Programme Team
                 </AppleButton>
               </div>
