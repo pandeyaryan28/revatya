@@ -17,7 +17,6 @@ export const PartnersPage: React.FC = () => {
   const [partnerOrg, setPartnerOrg] = useState('');
   const [partnerPathway, setPartnerPathway] = useState(PARTNERS_CONTENT.pathways[0].enquiryCategoryValue);
   const [partnerMessage, setPartnerMessage] = useState('');
-  const [partnerConsent, setPartnerConsent] = useState(true);
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +47,7 @@ export const PartnersPage: React.FC = () => {
         organisation: partnerOrg,
         category: partnerPathway,
         message: partnerMessage,
-        consent: partnerConsent,
+        consent: true,
         originatingPage: 'Partners Page',
       });
       setSubmissionResult(res);
@@ -169,10 +168,6 @@ export const PartnersPage: React.FC = () => {
                 <p className="mx-auto max-w-lg text-base leading-relaxed text-slate-600 dark:text-zinc-300">
                   Your partnership proposal has been forwarded directly to Revatya&apos;s operations desk. A team lead will review and respond promptly.
                 </p>
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-slate-700 dark:text-zinc-300">
-                  <span>Reference ID:</span>
-                  <span className="font-semibold text-slate-900 dark:text-white">{submissionResult.referenceId}</span>
-                </div>
                 <div className="pt-4">
                   <AppleButton
                     onClick={() => {
@@ -324,9 +319,6 @@ export const PartnersPage: React.FC = () => {
                   >
                     {isSubmitting ? 'Delivering proposal...' : 'Initiate Partnership Dialogue'}
                   </AppleButton>
-                  <p className="mt-3 text-center text-xs text-slate-500 dark:text-zinc-500">
-                    By submitting, you agree to Revatya contacting you regarding this partnership dialogue.
-                  </p>
                 </div>
               </form>
             )}

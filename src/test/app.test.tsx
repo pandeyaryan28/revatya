@@ -168,7 +168,7 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
     expect(container.querySelectorAll('figcaption').length).toBe(0);
   });
 
-  it('validates and submits the Contact form with canonical validation messages and Reference ID', async () => {
+  it('validates and submits the Contact form with canonical validation messages', async () => {
     render(
       <MemoryRouter initialEntries={['/contact']}>
         <ContactPage />
@@ -184,7 +184,6 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
     expect(await screen.findByText(/Please enter your name\./i)).toBeInTheDocument();
     expect(screen.getByText(/Enter a valid email address\./i)).toBeInTheDocument();
     expect(screen.getByText(/Please provide a short message\./i)).toBeInTheDocument();
-    expect(screen.getByText(/Please review the required consent field\./i)).toBeInTheDocument();
 
     fireEvent.change(screen.getByPlaceholderText(/Your full name/i), {
       target: { value: 'Dr. Vikram Sarabhai' },
@@ -197,12 +196,10 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
         value: 'Interested in collaborating on closed-loop ECLSS and radiative thermal rejection.',
       },
     });
-    fireEvent.click(screen.getByRole('checkbox'));
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
       expect(screen.getByText(/Enquiry Received/i)).toBeInTheDocument();
-      expect(screen.getByText(/Reference ID:/i)).toBeInTheDocument();
     });
   });
 
@@ -228,12 +225,10 @@ describe('Revatya Website Canonical Content, Interactive Systems & Form Integrit
     fireEvent.change(screen.getByLabelText(/Specific problem/i), {
       target: { value: 'Modular docking interfaces and orbital logistics throughput.' },
     });
-    fireEvent.click(screen.getByRole('checkbox'));
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
       expect(screen.getByText(/Thank you for introducing your work\./i)).toBeInTheDocument();
-      expect(screen.getByText(/Reference ID:/i)).toBeInTheDocument();
     });
   });
 

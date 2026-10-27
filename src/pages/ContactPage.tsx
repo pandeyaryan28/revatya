@@ -7,7 +7,7 @@ import { ScrollReveal } from '../components/ui/ScrollReveal';
 import { HeroSection } from '../components/ui/HeroSection';
 import { CONTACT_CONTENT } from '../data/siteContent';
 import { submitContactInquiry, SubmissionResult } from '../lib/submissions';
-import { CheckCircle2, AlertCircle, MessageSquare, Handshake, ArrowRight } from 'lucide-react';
+import { CheckCircle2, AlertCircle, MessageSquare, Handshake } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -32,7 +32,6 @@ export const ContactPage: React.FC = () => {
   const [category, setCategory] = useState<string>(resolveInitialCategory);
   const [message, setMessage] = useState('');
   const [sourcePage, setSourcePage] = useState('');
-  const [consent, setConsent] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,9 +56,6 @@ export const ContactPage: React.FC = () => {
     if (message.trim().length < 10) {
       nextErrors.message = CONTACT_CONTENT.validationMessages.message;
     }
-    if (!consent) {
-      nextErrors.consent = CONTACT_CONTENT.validationMessages.consent;
-    }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -77,7 +73,7 @@ export const ContactPage: React.FC = () => {
         category,
         message,
         sourcePage,
-        consent,
+        consent: true,
         originatingPage: isFromPartners ? 'Partners Page' : 'Contact Page',
         pathwayId: pathwayParam || undefined,
       });
@@ -117,10 +113,6 @@ export const ContactPage: React.FC = () => {
                 <p className="mx-auto max-w-lg text-base leading-relaxed text-slate-600 dark:text-zinc-300">
                   {CONTACT_CONTENT.successMessage}
                 </p>
-                <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/50 dark:bg-white/[0.04] px-4 py-1.5 font-mono text-xs text-slate-700 dark:text-zinc-300">
-                  <span>Reference ID:</span>
-                  <span className="font-semibold text-slate-900 dark:text-white">{submissionResult.referenceId}</span>
-                </div>
                 <div className="pt-4">
                   <AppleButton
                     onClick={() => {
@@ -130,7 +122,6 @@ export const ContactPage: React.FC = () => {
                       setOrganisation('');
                       setMessage('');
                       setSourcePage('');
-                      setConsent(false);
                     }}
                     variant="secondary"
                     size="sm"
@@ -276,27 +267,6 @@ export const ContactPage: React.FC = () => {
                   {errors.message && (
                     <p className="mt-1 flex items-center gap-1 text-xs text-rose-500">
                       <AlertCircle className="h-3.5 w-3.5 shrink-0" /> {errors.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* Consent */}
-                <div className="pt-1">
-                  <label className="flex items-start gap-3 cursor-pointer select-none">
-                    <input
-                      id="contact-consent"
-                      type="checkbox"
-                      checked={consent}
-                      onChange={(e) => setConsent(e.target.checked)}
-                      className="mt-1 h-4 w-4 rounded-md border-slate-300 text-slate-900 dark:border-zinc-700 dark:bg-zinc-800 focus:ring-slate-900 cursor-pointer"
-                    />
-                    <span className="text-sm leading-relaxed text-slate-600 dark:text-zinc-400">
-                      I agree to Revatya reviewing my details and following up regarding this enquiry.
-                    </span>
-                  </label>
-                  {errors.consent && (
-                    <p className="mt-1 flex items-center gap-1 text-xs text-rose-500">
-                      <AlertCircle className="h-3.5 w-3.5 shrink-0" /> {errors.consent}
                     </p>
                   )}
                 </div>
